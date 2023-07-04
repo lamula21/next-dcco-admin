@@ -10,6 +10,7 @@ import { MembershipIcon } from './Icons/MembershipIcon'
 import { SettingIcon } from './Icons/SettingIcon'
 import { ProductIcon } from './Icons/ProductIcon'
 import { useRouter } from 'next/router'
+import { UserButton } from '@clerk/nextjs'
 
 export const Nav = () => {
 	const inactiveLink = 'flex gap-1 p-1'
@@ -26,6 +27,10 @@ export const Nav = () => {
 			</Link>
 
 			<nav className="flex flex-col gap-2">
+				<div className="flex gap-1">
+					<UserButton afterSignOutUrl="/"></UserButton>
+				</div>
+
 				<Link
 					href={'/'}
 					className={pathname === '/' ? activeLink : inactiveLink}
