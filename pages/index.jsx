@@ -7,7 +7,6 @@ export default function Home() {
 			<div className="text-black flex justify-between">
 				<h2>
 					Hello, <b>User</b>
-					<Button>Click Me</Button>
 				</h2>
 
 				<div className="flex rounded-full overflow-hidden">
