@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import * as React from 'react'
 import { isClerkAPIResponseError, useSignIn } from '@clerk/nextjs'
+import { type OAuthStrategy } from '@clerk/types'
 import { toast } from 'sonner'
 
 import { Button } from '@/components/ui/button'
@@ -11,15 +12,18 @@ const oauthProviders = [
 	{ name: 'Google', strategy: 'oauth_google', icon: 'google' },
 	{ name: 'Facebook', strategy: 'oauth_facebook', icon: 'facebook' },
 	{ name: 'Discord', strategy: 'oauth_discord', icon: 'discord' },
-]
+] satisfies {
+	name: string
+	icon: keyof typeof Icons
+	strategy: OAuthStrategy
+}[]
 
 export function OAuthSignIn() {
-	const [isLoading, setIsLoading] = useState(null)
+	const [isLoading, setIsLoading] = React.useState<OAuthStrategy | null>(null)
 	const { signIn, isLoaded: signInLoaded } = useSignIn()
 
-	async function oauthSignIn(provider) {
+	async function oauthSignIn(provider: OAuthStrategy) {
 		if (!signInLoaded) return null
-
 		try {
 			setIsLoading(provider)
 			await signIn.authenticateWithRedirect({
@@ -39,7 +43,7 @@ export function OAuthSignIn() {
 	}
 
 	return (
-		<div>
+		<div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
 			{oauthProviders.map((provider) => {
 				const Icon = Icons[provider.icon]
 
@@ -49,7 +53,7 @@ export function OAuthSignIn() {
 						key={provider.strategy}
 						variant="outline"
 						className="w-full bg-background sm:w-auto"
-						onClick={() => oauthSignIn(provider.strategy)}
+						onClick={() => void oauthSignIn(provider.strategy)}
 						disabled={isLoading !== null}
 					>
 						{isLoading === provider.strategy ? (

@@ -29,7 +29,11 @@
 		"**/*.jsx",
 		"**/*.js",
 		"components/Icons/icons.jsx",
-		"components/PasswordInput.tsx"
+		"components/PasswordInput.tsx",
+		"pages/sso-callback/index.tsx",
+		"components/auth/sso-callback.tsx",
+		"components/auth/oauth-signin.tsx",
+		"components/SignCard.jsx"
 	],
 	"exclude": ["node_modules"]
 }
