@@ -1,13 +1,14 @@
 'use client'
 
-import { useRouter } from 'next/router'
-import { isClerkAPIResponseError, useSignIn } from '@clerk/nextjs'
 import { useTransition } from 'react'
-import { toast } from 'sonner'
-import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
+import { isClerkAPIResponseError, useSignIn } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 
 import { authSchema } from '@/lib/auth'
+import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
@@ -16,17 +17,17 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-
 import { Input } from '@/components/ui/input'
 import { Icons } from '@/components/Icons/icons'
 import { PasswordInput } from '@/components/PasswordInput'
-import { Button } from '@/components/ui/button'
 
 export function SignInForm() {
 	const router = useRouter()
 	const { isLoaded, signIn, setActive } = useSignIn()
 	const [isPending, startTransition] = useTransition()
 
+	// react-hook-form
+	// react-hook-form
 	const form = useForm({
 		resolver: zodResolver(authSchema),
 		defaultValues: {
@@ -50,10 +51,11 @@ export function SignInForm() {
 
 					router.push(`${window.location.origin}/`)
 				} else {
+					/*Investigate why the login hasn't completed */
 					console.log(result)
 				}
 			} catch (error) {
-				const unknownError = 'Something weng wrong, please try again'
+				const unknownError = 'Something went wrong, please try again.'
 
 				isClerkAPIResponseError(error)
 					? toast.error(error.errors[0]?.longMessage ?? unknownError)
@@ -75,7 +77,7 @@ export function SignInForm() {
 						<FormItem>
 							<FormLabel>Email</FormLabel>
 							<FormControl>
-								<Input placeholder="example@domain.com" {...field} />
+								<Input placeholder="example123@domain.com" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -88,7 +90,7 @@ export function SignInForm() {
 						<FormItem>
 							<FormLabel>Password</FormLabel>
 							<FormControl>
-								<PasswordInput placeholder="**********" {...field} />
+								<PasswordInput placeholder="Password" {...field} />
 							</FormControl>
 							<FormMessage />
 						</FormItem>

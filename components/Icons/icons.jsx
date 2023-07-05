@@ -27,6 +27,8 @@ import {
 	Image,
 	Loader2,
 	LogOut,
+	LucideIcon,
+	LucideProps,
 	Menu,
 	MessageSquare,
 	Minus,

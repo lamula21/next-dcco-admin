@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { isClerkAPIResponseError, useSignIn } from '@clerk/nextjs'
 import { toast } from 'sonner'
 
@@ -13,8 +14,8 @@ const oauthProviders = [
 ]
 
 export function OAuthSignIn() {
-	const [isLoading, setIsLoading] = useStae(null)
-	const { signIn, signInLoaded } = useSignIn()
+	const [isLoading, setIsLoading] = useState(null)
+	const { signIn, isLoaded: signInLoaded } = useSignIn()
 
 	async function oauthSignIn(provider) {
 		if (!signInLoaded) return null
@@ -32,7 +33,7 @@ export function OAuthSignIn() {
 			const unknownError = 'Something went wrong, please try again.'
 
 			isClerkAPIResponseError(error)
-				? toast.error(error.errors[0]?.longMessage ?? unkownerror)
+				? toast.error(error.errors[0]?.longMessage ?? unknownError)
 				: toast.error(unknownError)
 		}
 	}
@@ -49,7 +50,7 @@ export function OAuthSignIn() {
 						variant="outline"
 						className="w-full bg-background sm:w-auto"
 						onClick={() => oauthSignIn(provider.strategy)}
-						disable={isLoading !== null}
+						disabled={isLoading !== null}
 					>
 						{isLoading === provider.strategy ? (
 							<Icons.spinner

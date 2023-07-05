@@ -1,6 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { OAuthSignIn } from './auth/oauth-signin'
+import { SignInForm } from './forms/signin-form'
+import { SignUpForm } from './forms/signup-form'
 
 import {
 	Card,
@@ -11,7 +13,7 @@ import {
 	CardTitle,
 } from './ui/card'
 
-export default function SignCard({ signOption, children }) {
+export default function SignCard({ signOption }) {
 	return signOption === 'signIn' ? (
 		<div>
 			<Card>
@@ -22,15 +24,15 @@ export default function SignCard({ signOption, children }) {
 					</CardDescription>
 				</CardHeader>
 
-				<CardContent className="grip gap-4">
+				<CardContent className="p-6 pt-0 grid gap-4">
 					<OAuthSignIn />
 
 					<div className="relative">
-						<div className="abosulute inset-0 flex items-center">
+						<div className="absolute inset-0 flex items-center">
 							<span className="w-full border-t" />
 						</div>
 
-						<div className="relative flex justify-center">
+						<div className="relative flex justify-center text-xs uppercase">
 							<span className="bg-background px-2 text-muted-foreground">
 								Or continue with
 							</span>
@@ -42,17 +44,17 @@ export default function SignCard({ signOption, children }) {
 
 				<CardFooter className="flex flex-wrap items-center space-x-2">
 					<div className="flex-1 text-sm text-muted-foreground">
-						Don&apos;t have an account?
+						Don&apos;t have an account?{' '}
 						<Link
 							aria-label="Sign up"
-							href="/"
+							href="/sign-up"
 							className="text-primary underline-offset-4 transition-colors hover:underline"
 						>
 							Sign up
 						</Link>
 					</div>
 					<Link
-						aria-label="Rset password"
+						aria-label="Reset password"
 						href="/"
 						className="text-sm text-primary underline-offset-4 transition-colors hover:underline"
 					>
@@ -65,21 +67,21 @@ export default function SignCard({ signOption, children }) {
 		<div>
 			<Card>
 				<CardHeader className="space-y-1">
-					<CardTitle className="text-2xl">Sign up</CardTitle>
+					<CardTitle className="text-2xl">Sign Up</CardTitle>
 					<CardDescription>
 						Choose your preferred sign in method
 					</CardDescription>
 				</CardHeader>
 
-				<CardContent className="grid gap-4">
+				<CardContent className="p-6 pt-0 grid gap-4">
 					<OAuthSignIn />
 
 					<div className="relative">
-						<div className="abosulute inset-0 flex items-center">
+						<div className="absolute inset-0 flex items-center">
 							<span className="w-full border-t" />
 						</div>
 
-						<div className="relative flex justify-center">
+						<div className="relative flex justify-center text-xs uppercase">
 							<span className="bg-background px-2 text-muted-foreground">
 								Or continue with
 							</span>
@@ -91,10 +93,10 @@ export default function SignCard({ signOption, children }) {
 
 				<CardFooter className="grid gap-4">
 					<div className="text-sm text-muted-foreground">
-						Already have an account?
+						Already have an account?{' '}
 						<Link
 							aria-label="Sign in"
-							href="/"
+							href="/sign-in"
 							className="text-primary underline-offset-4 transition-colors hover:underline"
 						>
 							Sign in

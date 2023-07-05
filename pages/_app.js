@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
+import { Toaster } from 'sonner'
 
 export default function App({
 	Component,
@@ -8,6 +9,7 @@ export default function App({
 	return (
 		<ClerkProvider>
 			<Component {...pageProps} />
+			<Toaster expand={false} position="top-center" richColors />
 		</ClerkProvider>
 	)
 }

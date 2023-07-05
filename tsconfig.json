@@ -22,6 +22,14 @@
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx,", "**/*.jsx", "**/*.js"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx,",
+		"**/*.jsx",
+		"**/*.js",
+		"components/Icons/icons.jsx",
+		"components/PasswordInput.tsx"
+	],
 	"exclude": ["node_modules"]
 }

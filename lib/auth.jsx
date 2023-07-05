@@ -1,3 +1,4 @@
+// Handles form input <=> Form Middleware
 import * as z from 'zod'
 
 export const authSchema = z.object({

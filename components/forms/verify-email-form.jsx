@@ -1,12 +1,13 @@
 'use client'
-import { useState, useTransition } from 'react'
+
+import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { isClerkAPIResponseError, useSignUp } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { authSchema } from '@/lib/auth'
+import { verfifyEmailSchema } from '@/lib/auth'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
@@ -18,19 +19,17 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Icons } from '@/components/Icons/icons'
-import { PasswordInput } from '@/components/PasswordInput'
 
-export function SignUpForm() {
+export function VerifyEmailForm() {
 	const router = useRouter()
-	const { isLoaded, signUp } = useSignUp()
+	const { isLoaded, signUp, setActive } = useSignUp()
 	const [isPending, startTransition] = useTransition()
 
 	// react-hook-form
 	const form = useForm({
-		resolver: zodResolver(authSchema),
+		resolver: zodResolver(verfifyEmailSchema),
 		defaultValues: {
-			email: '',
-			password: '',
+			code: '',
 		},
 	})
 
@@ -39,20 +38,19 @@ export function SignUpForm() {
 
 		startTransition(async () => {
 			try {
-				await signUp.create({
-					emailAddress: data.email,
-					password: data.password,
+				const completeSignUp = await signUp.attemptEmailAddressVerification({
+					code: data.code,
 				})
+				if (completeSignUp.status !== 'complete') {
+					/*  investigate the response, to see if there was an error
+             or if the user needs to complete more steps.*/
+					console.log(JSON.stringify(completeSignUp, null, 2))
+				}
+				if (completeSignUp.status === 'complete') {
+					await setActive({ session: completeSignUp.createdSessionId })
 
-				// Send email verification code
-				await signUp.prepareEmailAddressVerification({
-					strategy: 'email_code',
-				})
-
-				router.push('/sign-up/verify-email')
-				toast.message('Check your email', {
-					description: 'We sent you a 6-digit verification code.',
-				})
+					router.push(`${window.location.origin}/`)
+				}
 			} catch (error) {
 				const unknownError = 'Something went wrong, please try again.'
 
@@ -71,25 +69,19 @@ export function SignUpForm() {
 			>
 				<FormField
 					control={form.control}
-					name="email"
+					name="code"
 					render={({ field }) => (
 						<FormItem>
-							<FormLabel>Email</FormLabel>
+							<FormLabel>Verification Code</FormLabel>
 							<FormControl>
-								<Input placeholder="example@domain.com" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="password"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Password</FormLabel>
-							<FormControl>
-								<PasswordInput placeholder="Password" {...field} />
+								<Input
+									placeholder="XXX-XXX"
+									{...field}
+									onChange={(e) => {
+										e.target.value = e.target.value.trim()
+										field.onChange(e)
+									}}
+								/>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -102,8 +94,8 @@ export function SignUpForm() {
 							aria-hidden="true"
 						/>
 					)}
-					Continue
-					<span className="sr-only">Continue to email verification page</span>
+					Create account
+					<span className="sr-only">Create account</span>
 				</Button>
 			</form>
 		</Form>
