@@ -39,14 +39,14 @@ export default function Products() {
 									className="btn edit btn-link btn-sm rounded-full"
 									href={'/products/edit/' + product._id}
 								>
-									<i className="fas fa-lg fa-pen text-blue-700"></i>
+									Edit
 								</Link>
 
 								<Link
 									className="btn delete btn-link btn-sm rounded-full"
 									href={'/products/delete/' + product._id}
 								>
-									<i className="far fa-lg fa-trash-can "></i>
+									Delete
 								</Link>
 							</td>
 						</tr>

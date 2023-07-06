@@ -2,6 +2,7 @@
 module.exports = {
 	darkMode: ['class'],
 	content: [
+		'./node_modules/flowbite-react/**/*.js',
 		'./pages/**/*.{js,jsx,ts,tsx,mdx}',
 		'./components/**/*.{js,jsx,ts,tsx,mdx}',
 		'./app/**/*.{js,jsx,ts,tsx,mdx}',
@@ -16,6 +17,12 @@ module.exports = {
 			},
 		},
 		extend: {
+			width: {
+				custom: 'calc(100% - 78px)',
+			},
+			boxShadow: {
+				custom: '0 5px 10px rgba(0, 0, 0, 0.2)',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -72,5 +79,5 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [require('tailwindcss-animate')],
+	plugins: [require('tailwindcss-animate'), require('flowbite/plugin')],
 }

@@ -1,10 +1,15 @@
 import { Nav } from '@/components/Nav'
+import { Nav2 } from './Nav2'
+import { useState } from 'react'
 
 export const Layout = ({ children }) => {
+	// const [activeSidebar, SetActiveSidebar] = useState(false)
+
 	return (
-		<div className=" bg-slate-800 min-h-screen flex">
-			<Nav></Nav>
-			<div className="text-black bg-white flex-grow mt-2 mr-2 mb-2 rounded-lg p-4">
+		<div className="relative w-full h-full">
+			<Nav2></Nav2>
+			{/* Add line 257. Somehow use the state from Nav2 when activeSidebar */}
+			<div className="text-black bg-white absolute w-custom left-[78px] transition-all duration-500 ease-in-out">
 				{children}
 			</div>
 		</div>

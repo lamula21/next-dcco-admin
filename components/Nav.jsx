@@ -27,10 +27,6 @@ export const Nav = () => {
 			</Link>
 
 			<nav className="flex flex-col gap-2">
-				<div className="flex gap-1">
-					<UserButton afterSignOutUrl="/"></UserButton>
-				</div>
-
 				<Link
 					href={'/'}
 					className={pathname === '/' ? activeLink : inactiveLink}
@@ -94,6 +90,10 @@ export const Nav = () => {
 					<SettingIcon></SettingIcon>
 					Settings
 				</Link>
+
+				<div className="flex gap-1">
+					<UserButton afterSignOutUrl="/"></UserButton>
+				</div>
 			</nav>
 		</aside>
 	)
