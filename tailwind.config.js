@@ -19,6 +19,7 @@ module.exports = {
 		extend: {
 			width: {
 				custom: 'calc(100% - 78px)',
+				custom2: 'calc(100% - 240px)',
 			},
 			boxShadow: {
 				custom: '0 5px 10px rgba(0, 0, 0, 0.2)',

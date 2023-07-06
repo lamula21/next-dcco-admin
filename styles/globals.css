@@ -127,6 +127,29 @@ table.basic tr td a.delete {
 } */
 
 /* -------------------------------------- */
+.sidebar {
+	transition: all 0.5s ease;
+}
+.sidebar .logo_content .logo {
+	transition: all 0.5s ease;
+}
+.sidebar ul li .bx-search {
+	transition: all 0.5s ease;
+}
+.sidebar ul li a {
+	transition: all 0.4s ease;
+}
+.sidebar .profile_content .profile {
+	transition: all 0.4s ease;
+}
+.profile #log_out {
+	transition: all 0.4s ease;
+}
+.home_content {
+	transition: all 0.5s ease;
+}
+
 .sidebar ul li:hover .tooltip {
-	@apply top-[50%] opacity-100 transition-all duration-500 ease-in-out;
+	@apply top-[50%] opacity-100;
+	transition: all 0.5s ease;
 }

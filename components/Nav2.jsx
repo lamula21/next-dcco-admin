@@ -6,18 +6,16 @@ import { cn } from '@/lib/utils'
 import { MembershipIcon } from './Icons/MembershipIcon'
 import { SignOutButton, UserButton } from '@clerk/nextjs'
 
-export const Nav2 = () => {
+export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 	const tooltip =
 		'tooltip absolute left-[122px] top-0 translate-y-[-50%] translate-x-[-50%] rounded-[6px] h-[35px] w-[122px] bg-white leading-[35px] text-center shadow-custom transition-all duration-0 opacity-0 pointer-events-none block'
 
 	const a =
-		' text-white flex items-center no-underline transition-all duration-500 ease-in rounded-xl whitespace-nowrap hover:text-[#11101d] hover:bg-white'
+		' text-white flex items-center no-underline rounded-xl whitespace-nowrap hover:text-[#11101d] hover:bg-white'
 
 	const i = ' h-[50px] min-w-[50px] rounded-xl leading-[50px] text-center'
-	const linksName =
-		'links_name opacity-0 pointer-events-none transition-all duration-500 ease-in'
+	const linksName = 'links_name opacity-0 pointer-events-none'
 
-	const [activeSidebar, SetActiveSidebar] = useState(false)
 	const inactiveLink = 'flex gap-1 p-1'
 	const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-lg'
 	const router = useRouter()
@@ -37,7 +35,7 @@ export const Nav2 = () => {
 		// add .sidebar.active => line 28
 		<aside
 			className={cn(
-				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5 transition-all duration-500 ease-in',
+				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5',
 				activeSidebar ? 'active w-[240px] rounded-tr-[12px]' : ''
 			)}
 			onClick={(e) => toggleSidebar(true)}
@@ -47,7 +45,7 @@ export const Nav2 = () => {
 				<Link
 					href={'/'}
 					className={cn(
-						'logo text-white flex h-[50px] w-full items-center opacity-0 pointer-events-none transition-all duration-500 ease-in',
+						'logo text-white flex h-[50px] w-full items-center opacity-0 pointer-events-none',
 						activeSidebar ? 'active opacity-100 pointer-events-none' : ''
 					)}
 				>
@@ -75,7 +73,7 @@ export const Nav2 = () => {
 				<li className="relative h-[50px] w-full my-0 ml-[5px] list-none leading-[50px]">
 					<i
 						className={
-							'bx bx-search absolute z-[99] text-white text-[22px] transition-all duration-500 ease-in hover:bg-white hover:text-[#1d1b31]' +
+							'bx bx-search absolute z-[99] text-white text-[22px] hover:bg-white hover:text-[#1d1b31]' +
 							i
 						}
 						onClick={(e) => {
