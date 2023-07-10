@@ -1,11 +1,17 @@
-import { Layout } from '@/components/Layout'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import Link from 'next/link'
 import axios from 'axios'
-import Head from 'next/head'
+
+import { Layout } from '@/components/Layout'
+import Heading from '@/components/Heading'
+import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
+import { Plus } from 'lucide-react'
 
 export default function Products() {
 	const [products, setProducts] = useState([])
+	const router = useRouter()
 
 	// useEffect for fetching
 	useEffect(() => {
@@ -17,9 +23,24 @@ export default function Products() {
 
 	return (
 		<Layout>
-			<Link className="btn-primary" href={'/products/new'}>
+			<div className="flex items-center justify-between">
+				<Heading title="Products (0)" description="Manage products for DCCO" />
+
+				<Button
+					onClick={() => router.push(`/products/new`)}
+					variant="default"
+					size="sm"
+				>
+					<Plus className="mr-2 h-4 w-4" />
+					<span>Add new</span>
+				</Button>
+			</div>
+
+			<Separator className="mt-4" />
+
+			{/* <Link className="btn-primary" href={'/products/new'}>
 				Add new product
-			</Link>
+			</Link> */}
 
 			<table className="basic mt-4">
 				<thead>

@@ -15,7 +15,7 @@ export const Layout = ({ children }) => {
 			{/* Add line 257. Somehow use the state from Nav2 when activeSidebar */}
 			<div
 				className={cn(
-					'home_content text-black bg-white absolute w-custom left-[78px]',
+					'home_content text-black bg-white absolute w-custom left-[78px] h-full z-0 p-10',
 					activeSidebar ? 'active w-custom2 left-[240px]' : ''
 				)}
 				onClick={() => SetActiveSidebar(false)}

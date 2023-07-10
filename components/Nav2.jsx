@@ -35,7 +35,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 		// add .sidebar.active => line 28
 		<aside
 			className={cn(
-				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5',
+				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5 z-10',
 				activeSidebar ? 'active w-[240px] rounded-tr-[12px]' : ''
 			)}
 			onClick={(e) => toggleSidebar(true)}
@@ -114,7 +114,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/user'} className={a}>
+					<Link href={'/products'} className={a}>
 						<i className={'bx bx-shopping-bag' + i}></i>
 						<span
 							className={cn(
@@ -131,7 +131,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/post'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-message-square-edit' + i}></i>
 						<span
 							className={cn(
@@ -148,7 +148,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/post'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-calendar' + i}></i>
 						<span
 							className={cn(
@@ -165,7 +165,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/message'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-paper-plane' + i}></i>
 						<span
 							className={cn(
@@ -182,7 +182,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/membership'} className={a}>
+					<Link href={'/'} className={a}>
 						<MembershipIcon />
 						<span
 							className={cn(
@@ -199,7 +199,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/user'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-user' + i}></i>
 						<span
 							className={cn(
@@ -216,7 +216,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/page'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-code-alt' + i}></i>
 						<span
 							className={cn(
@@ -233,7 +233,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/order'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-cart-alt' + i}></i>
 						<span
 							className={cn(
@@ -250,7 +250,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'setting'} className={a}>
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-cog' + i}></i>
 						<span
 							className={cn(
