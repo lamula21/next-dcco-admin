@@ -12,18 +12,23 @@ export default async function handle(req, res) {
 	/* HTTPS METHODS */
 	if (method === 'GET') {
 		if (req.query?.id) {
-			await Product.findOne({ _id: req.query.id })
+			return res.json(await Product.findOne({ _id: req.query.id }))
 		}
-		res.json(await Product.find())
+		return res.json(await Product.find())
 	}
 
 	if (method === 'POST') {
-		const { title, description, price } = req.body
+		const { title, description, imageUrl, category, price, size, color } =
+			req.body
 
 		const productDocument = await Product.create({
 			title,
 			description,
+			imageUrl,
+			category,
 			price,
+			size,
+			color,
 		})
 
 		res.json(productDocument)

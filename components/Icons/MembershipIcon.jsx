@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const MembershipIcon = () => {
+export const MembershipIcon = ({ onClick }) => {
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -9,6 +9,7 @@ export const MembershipIcon = () => {
 			strokeWidth={1.5}
 			stroke="currentColor"
 			className="h-[20px] min-w-[50px] rounded-xl leading-[50px] text-center"
+			onClick={onClick}
 		>
 			<path
 				strokeLinecap="round"

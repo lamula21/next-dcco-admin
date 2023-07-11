@@ -38,10 +38,7 @@ export default function Products() {
 
 			<Separator className="mt-4" />
 
-			{/* <Link className="btn-primary" href={'/products/new'}>
-				Add new product
-			</Link> */}
-
+			{/* // Change this table with shadcn */}
 			<table className="basic mt-4">
 				<thead>
 					<tr>

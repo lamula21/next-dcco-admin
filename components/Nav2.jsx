@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import { useState } from 'react'
-import { useRouter } from 'next/router'
 import { cn } from '@/lib/utils'
 
 import { MembershipIcon } from './Icons/MembershipIcon'
@@ -18,8 +16,6 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 
 	const inactiveLink = 'flex gap-1 p-1'
 	const activeLink = inactiveLink + ' bg-white text-blue-900 rounded-l-lg'
-	const router = useRouter()
-	const { pathname } = router
 
 	const toggleSidebar = (state) => {
 		if (state === true) {
@@ -32,16 +28,13 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 	}
 
 	return (
-		// add .sidebar.active => line 28
 		<aside
 			className={cn(
-				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5 z-10',
+				'sidebar fixed top-0 left-0 h-full w-[78px] bg-[#11101d] py-1.5 px-3.5 z-[1]',
 				activeSidebar ? 'active w-[240px] rounded-tr-[12px]' : ''
 			)}
-			onClick={(e) => toggleSidebar(true)}
 		>
 			<div className="logo_content">
-				{/* add .sidebar.active .logo_content .logo => line 43 when activeSidebar */}
 				<Link
 					href={'/'}
 					className={cn(
@@ -54,7 +47,6 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 						DCCO Admin
 					</div>
 				</Link>
-				{/* add .sidebar.active #btn => line 70 when activeSidebar */}
 				<i
 					className={cn(
 						'bx bx-menu absolute text-white top-[6px] left-[50%] text-[20px] h-[50px] w-[50px] text-center leading-[50px] translate-x-[-50%]',
@@ -88,7 +80,6 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 						placeholder="Search..."
 					/>
 
-					{/* add .sidebar.active ul li .tooltip => line 102 when activeSidebar. Same for the rest */}
 					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
 						Search
 					</span>
@@ -97,7 +88,6 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
 					<Link href={'/'} className={a}>
 						<i className={'bx bx-grid-alt' + i}></i>
-						{/* add .sidebar.active .links_name => line 164 when activeSidebar. Same for rest */}
 						<span
 							className={cn(
 								linksName,
@@ -267,16 +257,13 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 			</ul>
 
-			{/* add line 176 when activeSidebar */}
 			<div className="profile_content absolute text-white bottom-0 left-0 w-full">
-				{/* add line 189 when activeSidebar */}
 				<div
 					className={cn(
 						'profile relative py-[10px] px-[12px] h-[60px] transition-all duration-500 ease-in bg-none',
 						activeSidebar ? 'active bg-[#1d1b31]' : ''
 					)}
 				>
-					{/* add line 199 when activeSidebar */}
 					<div
 						className={cn(
 							'profile_details flex items-center opacity-0 pointer-events-none whitespace-nowrap',
@@ -290,7 +277,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 							<div className="job text-[12px]">Admin</div>
 						</div>
 					</div>
-					{/* add line 236 and 239 when activeSidebar */}
+
 					<SignOutButton>
 						<i
 							className={cn(

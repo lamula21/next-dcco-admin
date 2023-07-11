@@ -6,6 +6,8 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ProductForm } from '@/components/ProductForm'
 
+// fetch DB to get products and display it on the form
+// data, Pass data into Product form
 export default function EditProductPage() {
 	const router = useRouter()
 	const { id } = router.query // retrieve id from url
@@ -25,7 +27,7 @@ export default function EditProductPage() {
 	return (
 		<Layout>
 			<h1>Edit Product</h1>
-			{productInfo && <ProductForm {...productInfo}></ProductForm>}
+			{productInfo && <ProductForm initialData={productInfo}></ProductForm>}
 		</Layout>
 	)
 }
