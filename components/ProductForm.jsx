@@ -13,7 +13,6 @@ import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
@@ -32,17 +31,7 @@ const formSchema = z.object({
 	color: z.string().min(1),
 })
 
-export const ProductForm = ({
-	initialData,
-	// _id,
-	// title: titleInfo,
-	// description: descriptionInfo,
-	// imageUrl,
-	// category,
-	// price: priceInfo,
-	// size,
-	// color,
-}) => {
+export const ProductForm = ({ initialData }) => {
 	const router = useRouter()
 
 	const [loading, SetLoading] = useState(false)

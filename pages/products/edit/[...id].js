@@ -5,6 +5,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { ProductForm } from '@/components/ProductForm'
+import Heading from '@/components/Heading'
+import { Separator } from '@/components/ui/separator'
 
 // fetch DB to get products and display it on the form
 // data, Pass data into Product form
@@ -26,7 +28,8 @@ export default function EditProductPage() {
 	// Note: ...productInfo (spread operator) passes individual props to the component
 	return (
 		<Layout>
-			<h1>Edit Product</h1>
+			<Heading title="Edit product" description="Edit a product" />
+			<Separator className="mt-4" />
 			{productInfo && <ProductForm initialData={productInfo}></ProductForm>}
 		</Layout>
 	)

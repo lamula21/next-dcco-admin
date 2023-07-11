@@ -3,7 +3,7 @@ import { useDropzone } from 'react-dropzone'
 import { UploadIcon } from './Icons/UploadIcon'
 import { toast } from 'sonner'
 
-export const Dropzone = ({ onChange, className }) => {
+export const Dropzone = ({ SetLoading, onChange, className }) => {
 	const [files, SetFiles] = useState([])
 
 	const onDrop = useCallback((acceptedFiles) => {
@@ -13,6 +13,8 @@ export const Dropzone = ({ onChange, className }) => {
 	}, [])
 
 	async function postToCloudinary() {
+		SetLoading(true)
+
 		// Create a form ready to be sent thru HTTPS to Cloudinary
 		const formData = new FormData()
 		files.forEach((file) => formData.append('file', file))
@@ -29,6 +31,8 @@ export const Dropzone = ({ onChange, className }) => {
 			toast.message('1 image was added.')
 		} catch (error) {
 			toast.error('Something went wrong.')
+		} finally {
+			SetLoading(false)
 		}
 	}
 

@@ -5,12 +5,15 @@ import { Button } from './ui/button'
 import { Dropzone } from './Dropzone'
 import Image from 'next/image'
 import { toast } from 'sonner'
+import { useState } from 'react'
+import SyncLoader from 'react-spinners/SyncLoader'
 
 export const ImageUpload = ({ onChange, onRemove, value }) => {
+	const [loading, SetLoading] = useState(false)
+
 	return (
 		<>
-			{/* Display Images */}
-			<div className="mb-4 flex items-center gap-8">
+			<div className="mb-4 flex flex-wrap items-center gap-8">
 				{value.map((url) => (
 					<div
 						key={url}
@@ -41,10 +44,22 @@ export const ImageUpload = ({ onChange, onRemove, value }) => {
 					</div>
 				))}
 
-				{/* Dropzone */}
+				{loading && (
+					<div className="w-[200px] h-[200px] flex items-center justify-center">
+						<SyncLoader
+							color="#11101d"
+							size={15}
+							speedMultiplier="1"
+							aria-label="Loading Spinner"
+							data-testid="loader"
+						/>
+					</div>
+				)}
+
 				<Dropzone
 					className="shadow-2xl border-dashed border-2 border-gray-300 rounded-lg w-[200px] h-[200px] flex flex-col items-center justify-center text-sm gap-4 text-gray-500 cursor-pointer"
 					onChange={onChange}
+					SetLoading={SetLoading}
 				/>
 			</div>
 		</>
