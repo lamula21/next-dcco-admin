@@ -35,9 +35,20 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'PUT') {
-		const { title, description, price, _id } = req.body
+		const { _id, title, description, imageUrl, category, price, size, color } =
+			req.body
 
-		await Product.findByIdAndUpdate(_id, { title, description, price })
+		console.log(req.body)
+
+		await Product.findByIdAndUpdate(_id, {
+			title,
+			description,
+			imageUrl,
+			category,
+			price,
+			size,
+			color,
+		})
 
 		res.json(true)
 	}

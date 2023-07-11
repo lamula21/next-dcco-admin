@@ -25,7 +25,7 @@ import { ImageUpload } from './ImageUpload'
 const formSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(0),
-	imageUrl: z.object({ url: z.string() }).array(),
+	imageUrl: z.string().array(),
 	category: z.string().min(1),
 	price: z.coerce.number().min(1),
 	size: z.string().min(1),
@@ -71,15 +71,10 @@ export const ProductForm = ({
 		try {
 			SetLoading(true)
 
-			const dataFormatted = {
-				...data, // Copy the original data object
-				imageUrl: data.imageUrl.map((image) => image.url),
-			}
-
 			if (initialData) {
-				await axios.put('/api/products', { ...data, _id })
+				await axios.put('/api/products', data)
 			} else {
-				await axios.post('/api/products', dataFormatted)
+				await axios.post('/api/products', data)
 			}
 			router.push('/products')
 			toast.success(toastMessage)
@@ -105,13 +100,11 @@ export const ProductForm = ({
 								<FormLabel>Images</FormLabel>
 								<FormControl>
 									<ImageUpload
-										value={field.value.map((image) => image.url)}
-										onChange={(url) =>
-											field.onChange([...field.value, { url }])
-										}
+										value={field.value.map((image) => image)}
+										onChange={(url) => field.onChange([...field.value, url])}
 										onRemove={(url) =>
 											field.onChange([
-												...field.value.filter((current) => current.url !== url),
+												...field.value.filter((current) => current !== url),
 											])
 										}
 									/>
