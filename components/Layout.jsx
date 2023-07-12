@@ -20,7 +20,7 @@ export const Layout = ({ children }) => {
 				)}
 				onClick={() => SetActiveSidebar(false)}
 			>
-				{children}
+				<div className="flex-1 space-y-4 pb-10">{children}</div>
 			</div>
 		</div>
 	)

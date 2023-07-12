@@ -15,8 +15,16 @@ export default function DeleteProductPage() {
 	}
 
 	async function deleteProduct() {
-		await axios.delete('/api/products?id=' + id)
-		router.push('/products')
+		try {
+			SetLoading(true)
+			await axios.delete('/api/products?id=' + id)
+			toast.success('Product deleted succesfully.')
+			router.push('/products')
+		} catch (error) {
+			toast.error('Something went wrong.')
+		} finally {
+			SetLoading(false)
+		}
 	}
 
 	useEffect(() => {
@@ -46,3 +54,7 @@ export default function DeleteProductPage() {
 		</Layout>
 	)
 }
+
+// Two ways to pass a function into on[Property] prop
+// onClick = { () => onDelete()} iff onDelete is an arrow function
+// onClick = {onDelete} iff onDelete is a function

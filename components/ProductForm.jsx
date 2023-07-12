@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
+	FormDescription,
 	FormControl,
 	FormField,
 	FormItem,
@@ -129,7 +130,12 @@ export const ProductForm = ({ initialData }) => {
 								<FormItem>
 									<FormLabel>Price</FormLabel>
 									<FormControl>
-										<Input disabled={loading} placeholder="9.99" {...field} />
+										<Input
+											type="number"
+											disabled={loading}
+											placeholder="9.99"
+											{...field}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>

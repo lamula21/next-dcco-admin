@@ -1,7 +1,7 @@
 import { Layout } from '@/components/Layout'
 import { Button } from '@/components/ui/button'
 
-export default function Home() {
+export default function HomePage() {
 	return (
 		<Layout>
 			<div className="text-black flex justify-between">

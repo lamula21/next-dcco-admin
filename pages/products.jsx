@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 import { Layout } from '@/components/Layout'
@@ -8,8 +7,12 @@ import Heading from '@/components/Heading'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
+import { format } from 'date-fns'
+import { DataTable } from '@/components/DataTable'
+import { columns } from '@/components/Columns'
+import { ApiList } from '@/components/ApiList'
 
-export default function Products() {
+export default function ProductsPage() {
 	const [products, setProducts] = useState([])
 	const router = useRouter()
 
@@ -21,10 +24,25 @@ export default function Products() {
 		})
 	}, [])
 
+	// Removing unnecessary fields
+	const formattedProducts = products.map((item) => ({
+		id: item._id,
+		title: item.title,
+		description: item.description,
+		category: item.category,
+		price: `$${item.price}`,
+		size: item.size,
+		color: item.color,
+		createdAt: format(new Date(item.createdAt), 'MMMM do, yyyy'),
+	}))
+
 	return (
 		<Layout>
 			<div className="flex items-center justify-between">
-				<Heading title="Products (0)" description="Manage products for DCCO" />
+				<Heading
+					title={`Products (${products.length})`}
+					description="Manage products for DCCO"
+				/>
 
 				<Button
 					onClick={() => router.push(`/products/new`)}
@@ -35,42 +53,13 @@ export default function Products() {
 					<span>Add new</span>
 				</Button>
 			</div>
+			<Separator />
+			{/* searchKey = accessorKey from @/components/Columns  */}
+			<DataTable searchKey="title" columns={columns} data={formattedProducts} />
 
-			<Separator className="mt-4" />
-
-			{/* // Change this table with shadcn */}
-			<table className="basic mt-4">
-				<thead>
-					<tr>
-						<td>Product Name</td>
-						<td></td>
-					</tr>
-				</thead>
-
-				<tbody>
-					{products.map((product) => (
-						<tr key={product._id}>
-							<td>{product.title}</td>
-
-							<td>
-								<Link
-									className="btn edit btn-link btn-sm rounded-full"
-									href={'/products/edit/' + product._id}
-								>
-									Edit
-								</Link>
-
-								<Link
-									className="btn delete btn-link btn-sm rounded-full"
-									href={'/products/delete/' + product._id}
-								>
-									Delete
-								</Link>
-							</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
+			<Heading title="API" description="API Calls for Products" />
+			<Separator />
+			<ApiList entityName="products" entityIdName="productID" />
 		</Layout>
 	)
 }
