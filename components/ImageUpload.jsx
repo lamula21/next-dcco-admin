@@ -24,7 +24,7 @@ export const ImageUpload = ({ onChange, onRemove, value }) => {
 								type="button"
 								onClick={() => {
 									onRemove(url)
-									toast.success('1 image was removed.')
+									toast.message('1 image was removed.')
 								}}
 								variant="destructive"
 								size="sm"
@@ -57,7 +57,7 @@ export const ImageUpload = ({ onChange, onRemove, value }) => {
 				)}
 
 				<Dropzone
-					className="shadow-2xl border-dashed border-2 border-gray-300 rounded-lg w-[200px] h-[200px] flex flex-col items-center justify-center text-sm gap-4 text-gray-500 cursor-pointer"
+					className="shadow-2xl border-dashed border-2 border-gray-300 rounded-lg w-[200px] h-[200px] flex flex-col items-center justify-center text-sm gap-4 text-gray-500 cursor-pointer hover:bg-zinc-200"
 					onChange={onChange}
 					SetLoading={SetLoading}
 				/>

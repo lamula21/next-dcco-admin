@@ -12,16 +12,28 @@ import {
 	CardHeader,
 	CardTitle,
 } from './ui/card'
+import Image from 'next/image'
 
 export default function SignCard({ signOption }) {
 	return signOption === 'signIn' ? (
 		<div>
 			<Card>
-				<CardHeader className="space-y-1">
-					<CardTitle className="text-2xl">Sign In</CardTitle>
-					<CardDescription>
-						Choose your preferred sign in method
-					</CardDescription>
+				<CardHeader className="space-y-5">
+					<Image
+						className="mx-auto"
+						src={
+							'https://dccodeofficials.com/wp-content/uploads/2023/07/cropped-dc-code-logo-img-removebg-preview.png'
+						}
+						width="50"
+						height="50"
+					/>
+					<div>
+						{' '}
+						<CardTitle className="text-center text-2xl">Sign In</CardTitle>
+						<CardDescription className="text-center">
+							Choose your preferred sign in method
+						</CardDescription>
+					</div>
 				</CardHeader>
 
 				<CardContent className="p-6 pt-0 grid gap-4">
