@@ -1,5 +1,3 @@
-'use client'
-
 import * as z from 'zod'
 import axios from 'axios'
 import { useState } from 'react'
@@ -20,7 +18,7 @@ import {
 	FormMessage,
 } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
-import { ImageUpload } from './ImageUpload'
+import { ImageUpload } from '../ImageUpload'
 
 const formSchema = z.object({
 	title: z.string().min(1),
@@ -80,11 +78,10 @@ export const ProductForm = ({ initialData }) => {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="mt-4 space-y-12 w-full"
-				>
+					className='mt-4 space-y-12 w-full'>
 					<FormField
 						control={form.control}
-						name="imageUrl"
+						name='imageUrl'
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Images</FormLabel>
@@ -104,17 +101,17 @@ export const ProductForm = ({ initialData }) => {
 						)}
 					/>
 
-					<div className="md:grid md:grid-cols-3 gap-8">
+					<div className='md:grid md:grid-cols-3 gap-8'>
 						<FormField
 							control={form.control}
-							name="title"
+							name='title'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Name</FormLabel>
 									<FormControl>
 										<Input
 											disabled={loading}
-											placeholder="Product name"
+											placeholder='Product name'
 											{...field}
 										/>
 									</FormControl>
@@ -125,15 +122,15 @@ export const ProductForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name="price"
+							name='price'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Price</FormLabel>
 									<FormControl>
 										<Input
-											type="number"
+											type='number'
 											disabled={loading}
-											placeholder="9.99"
+											placeholder='9.99'
 											{...field}
 										/>
 									</FormControl>
@@ -144,14 +141,14 @@ export const ProductForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name="category"
+							name='category'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Category</FormLabel>
 									<FormControl>
 										<Input
 											disabled={loading}
-											placeholder="T-shirt"
+											placeholder='T-shirt'
 											{...field}
 										/>
 									</FormControl>
@@ -162,14 +159,14 @@ export const ProductForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name="description"
+							name='description'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
 										<Textarea
 											disabled={loading}
-											placeholder="Say something about this item"
+											placeholder='Say something about this item'
 											{...field}
 										/>
 									</FormControl>
@@ -180,12 +177,12 @@ export const ProductForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name="size"
+							name='size'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Size</FormLabel>
 									<FormControl>
-										<Input disabled={loading} placeholder="Small" {...field} />
+										<Input disabled={loading} placeholder='Small' {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -194,12 +191,12 @@ export const ProductForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name="color"
+							name='color'
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Color</FormLabel>
 									<FormControl>
-										<Input disabled={loading} placeholder="Black" {...field} />
+										<Input disabled={loading} placeholder='Black' {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -207,7 +204,7 @@ export const ProductForm = ({ initialData }) => {
 						/>
 					</div>
 
-					<Button disabled={loading} className="ml-auto" type="submit">
+					<Button disabled={loading} className='ml-auto' type='submit'>
 						{action}
 					</Button>
 				</form>

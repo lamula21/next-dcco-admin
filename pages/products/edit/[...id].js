@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import { ProductForm } from '@/components/ProductForm'
+import { ProductForm } from '@/components/forms/product-form'
 import Heading from '@/components/Heading'
 import { Separator } from '@/components/ui/separator'
 import { PreviousButton } from '@/components/ui/previous'
@@ -30,8 +30,8 @@ export default function EditProductPage() {
 	return (
 		<Layout>
 			<PreviousButton />
-			<Heading title="Edit product" description="Edit a product" />
-			<Separator className="mt-4" />
+			<Heading title='Edit product' description='Edit a product' />
+			<Separator className='mt-4' />
 			{productInfo && <ProductForm initialData={productInfo}></ProductForm>}
 		</Layout>
 	)

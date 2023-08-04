@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 
 import { MembershipIcon } from './Icons/MembershipIcon'
 import { SignOutButton, UserButton } from '@clerk/nextjs'
+import { StoreIcon } from './Icons/StoreIcon'
 
 export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 	const tooltip =
@@ -42,7 +43,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 						activeSidebar ? 'active opacity-100 pointer-events-none' : ''
 					)}
 				>
-					<i className="bx bxl-c-plus-plus text-[28px] font-normal"></i>
+					<StoreIcon className="mr-2 text-[28px] font-normal"></StoreIcon>
 					<div className="logo_name text-[20px] font-normal whitespace-nowrap">
 						DCCO Admin
 					</div>
@@ -121,19 +122,19 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/'} className={a}>
-						<i className={'bx bx-message-square-edit' + i}></i>
+					<Link href={'/orders'} className={a}>
+						<i className={'bx bx-cart-alt' + i}></i>
 						<span
 							className={cn(
 								linksName,
 								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
 							)}
 						>
-							Posts
+							Orders
 						</span>
 					</Link>
 					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
-						Posts
+						Orders
 					</span>
 				</li>
 
@@ -156,6 +157,23 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
 					<Link href={'/'} className={a}>
+						<i className={'bx bx-message-square-edit' + i}></i>
+						<span
+							className={cn(
+								linksName,
+								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
+							)}
+						>
+							Posts
+						</span>
+					</Link>
+					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
+						Posts
+					</span>
+				</li>
+
+				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
+					<Link href={'/'} className={a}>
 						<i className={'bx bx-paper-plane' + i}></i>
 						<span
 							className={cn(
@@ -168,6 +186,23 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 					</Link>
 					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
 						Messages
+					</span>
+				</li>
+
+				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
+					<Link href={'/'} className={a}>
+						<i className={'bx bx-code-alt' + i}></i>
+						<span
+							className={cn(
+								linksName,
+								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
+							)}
+						>
+							Pages
+						</span>
+					</Link>
+					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
+						Pages
 					</span>
 				</li>
 
@@ -197,45 +232,11 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
 							)}
 						>
-							User
+							Users
 						</span>
 					</Link>
 					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
-						User
-					</span>
-				</li>
-
-				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/'} className={a}>
-						<i className={'bx bx-code-alt' + i}></i>
-						<span
-							className={cn(
-								linksName,
-								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
-							)}
-						>
-							Pages
-						</span>
-					</Link>
-					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
-						Pages
-					</span>
-				</li>
-
-				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/'} className={a}>
-						<i className={'bx bx-cart-alt' + i}></i>
-						<span
-							className={cn(
-								linksName,
-								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
-							)}
-						>
-							Orders
-						</span>
-					</Link>
-					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
-						Orders
+						Users
 					</span>
 				</li>
 
