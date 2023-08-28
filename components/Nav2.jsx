@@ -139,7 +139,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
-					<Link href={'/'} className={a}>
+					<Link href={'/events'} className={a}>
 						<i className={'bx bx-calendar' + i}></i>
 						<span
 							className={cn(

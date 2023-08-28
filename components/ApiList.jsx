@@ -17,7 +17,7 @@ export const ApiList = ({ entityName, entityIdName }) => {
 			<ApiAlert
 				title="GET | Retrieve One"
 				variant="public"
-				description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+				description={`${baseUrl}/${entityName}?id={${entityIdName}}`}
 			/>
 			<ApiAlert
 				title="POST | Create"
@@ -27,12 +27,12 @@ export const ApiList = ({ entityName, entityIdName }) => {
 			<ApiAlert
 				title="PUT | Edit "
 				variant="admin"
-				description={`${baseUrl}/${entityName}/{${entityIdName}}`}
+				description={`${baseUrl}/${entityName}`}
 			/>
 			<ApiAlert
 				title="DELETE"
 				variant="admin"
-				description={`${baseUrl}/${entityIdName}`}
+				description={`${baseUrl}/${entityName}?id={${entityIdName}}`}
 			/>
 		</>
 	)
