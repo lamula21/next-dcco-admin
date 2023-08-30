@@ -36,7 +36,6 @@ export function DataTable({ columns, data, searchKey }) {
 			columnFilters,
 		},
 	})
-	console.log({table})
 
 	return (
 		<div>

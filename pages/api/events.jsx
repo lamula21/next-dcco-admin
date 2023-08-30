@@ -38,16 +38,14 @@ export default async function handle(req, res) {
 		const { _id, title, description, imageUrl, date, init_time, end_time, address  } =
 			req.body
 
-		console.log(req.body)
-
 		await Event.findByIdAndUpdate(_id, {
 			title,
 			description,
 			imageUrl,
-			category,
-			price,
-			size,
-			color,
+			date,
+			init_time,
+			end_time,
+			address,
 		})
 
 		res.json(true)

@@ -20,7 +20,6 @@ export default function EventsPage() {
 	useEffect(() => {
 		// Fetch GET - get events from DB
 		axios.get('/api/events').then((response) => {
-			console.log({response: response.data})
 			setEvents(response.data)
 		})
 	}, [])
@@ -30,7 +29,8 @@ export default function EventsPage() {
 		id: item._id,
 		title: item.title,
 		description: item.description,
-		createdAt: format(new Date(item.createdAt), 'MMMM do, yyyy'),
+		date: item.date,
+		hour: `${item.init_time} - ${item.end_time}`
 	}))
 
 	return (
@@ -52,7 +52,7 @@ export default function EventsPage() {
 			</div>
 			<Separator />
 			{/* searchKey = accessorKey from @/components/Columns  */}
-			{/* <DataTable searchKey="title" columnsEvent={columnsEvent} data={formattedEvents} /> */}
+			<DataTable searchKey="title" columns={columnsEvent} data={formattedEvents} />
 
 			<Heading title="API" description="API Calls for Events" />
 			<Separator />
