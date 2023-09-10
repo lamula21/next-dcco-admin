@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { Copy, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -20,6 +20,11 @@ export const CellAction = ({ data, route }) => {
 	const [loading, SetLoading] = useState(false)
 	const [open, SetOpen] = useState(false)
 
+	// Function to refetch data without hard reloading page
+	const refreshData = () => {
+		router.replace(router.asPath)
+	}
+
 	// Function to copy from clipboard
 	const onCopy = (id) => {
 		navigator.clipboard.writeText(id)
@@ -30,18 +35,14 @@ export const CellAction = ({ data, route }) => {
 	const onDelete = async () => {
 		try {
 			SetLoading(true)
-			await axios.delete(`/api/${route}?id=` + data.id)
-			toast.success('Deleted succesfully.')
-			router.push(`/${route}`)
+			const res = await axios.delete(`/api/${route}?id=` + data.id)
+			if (res.data) toast.success('Deleted succesfully.')
 		} catch (error) {
-			toast.error('Something went wrong.')
+			toast.error('Something went wrong in our servers.')
 		} finally {
 			SetLoading(false)
 			SetOpen(false)
-
-			setTimeout(() => {
-				router.refresh()
-			}, 1000)
+			refreshData()
 		}
 	}
 
