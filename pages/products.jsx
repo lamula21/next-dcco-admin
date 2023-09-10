@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
@@ -11,18 +10,10 @@ import { format } from 'date-fns'
 import { DataTable } from '@/components/DataTable'
 import { columns } from '@/components/Columns'
 import { ApiList } from '@/components/ApiList'
+import { fetchData } from '@/services/fetchData'
 
-export default function ProductsPage() {
-	const [products, setProducts] = useState([])
+export default function ProductsPage({ products }) {
 	const router = useRouter()
-
-	// useEffect for fetching
-	useEffect(() => {
-		// Fetch GET - get products from DB
-		axios.get('/api/products').then((response) => {
-			setProducts(response.data)
-		})
-	}, [])
 
 	// Removing unnecessary fields
 	const formattedProducts = products.map((item) => ({
@@ -62,4 +53,12 @@ export default function ProductsPage() {
 			<ApiList entityName="products" entityIdName="productID" />
 		</Layout>
 	)
+}
+
+/* SERVER-SIDE FETCH */
+export async function getServerSideProps() {
+	const products = await fetchData('/api/products')
+	return {
+		props: { products },
+	}
 }

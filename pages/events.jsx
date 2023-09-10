@@ -1,28 +1,17 @@
-import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import axios from 'axios'
 
 import { Layout } from '@/components/Layout'
 import Heading from '@/components/Heading'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
-import { format } from 'date-fns'
 import { DataTable } from '@/components/DataTable'
 import { columnsEvent } from '@/components/ColumnsEvent'
 import { ApiList } from '@/components/ApiList'
+import { fetchData } from '@/services/fetchData'
 
-export default function EventsPage() {
-	const [events, setEvents] = useState([])
+export default function EventsPage({ events }) {
 	const router = useRouter()
-
-	// useEffect for fetching
-	useEffect(() => {
-		// Fetch GET - get events from DB
-		axios.get('/api/events').then((response) => {
-			setEvents(response.data)
-		})
-	}, [])
 
 	// Removing unnecessary fields
 	const formattedEvents = events.map((item) => ({
@@ -30,7 +19,7 @@ export default function EventsPage() {
 		title: item.title,
 		description: item.description,
 		date: item.date,
-		hour: `${item.init_time} - ${item.end_time}`
+		hour: `${item.init_time} - ${item.end_time}`,
 	}))
 
 	return (
@@ -52,11 +41,23 @@ export default function EventsPage() {
 			</div>
 			<Separator />
 			{/* searchKey = accessorKey from @/components/Columns  */}
-			<DataTable searchKey="title" columns={columnsEvent} data={formattedEvents} />
+			<DataTable
+				searchKey="title"
+				columns={columnsEvent}
+				data={formattedEvents}
+			/>
 
 			<Heading title="API" description="API Calls for Events" />
 			<Separator />
 			<ApiList entityName="events" entityIdName="eventID" />
 		</Layout>
 	)
+}
+
+/* SERVER-SIDE FETCH */
+export async function getServerSideProps() {
+	const events = await fetchData('/api/events')
+	return {
+		props: { events },
+	}
 }
