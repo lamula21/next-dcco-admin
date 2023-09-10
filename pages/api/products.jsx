@@ -38,8 +38,6 @@ export default async function handle(req, res) {
 		const { _id, title, description, imageUrl, category, price, size, color } =
 			req.body
 
-		console.log(req.body)
-
 		await Product.findByIdAndUpdate(_id, {
 			title,
 			description,

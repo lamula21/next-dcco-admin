@@ -14,7 +14,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { AlertModal } from '@/components/AlertModal'
 
-export const CellAction = ({ data }) => {
+export const CellAction = ({ data, route }) => {
 	const router = useRouter() // manipulate url and navigation
 
 	const [loading, SetLoading] = useState(false)
@@ -23,16 +23,16 @@ export const CellAction = ({ data }) => {
 	// Function to copy from clipboard
 	const onCopy = (id) => {
 		navigator.clipboard.writeText(id)
-		toast.success('Product ID copied to the clipboard.')
+		toast.success('ID copied to the clipboard.')
 	}
 
-	// Function to delete a product
+	// Function to delete
 	const onDelete = async () => {
 		try {
 			SetLoading(true)
-			await axios.delete('/api/products?id=' + data.id)
-			toast.success('Product deleted succesfully.')
-			router.push('/products')
+			await axios.delete(`/api/${route}?id=` + data.id)
+			toast.success('Deleted succesfully.')
+			router.push(`/${route}`)
 		} catch (error) {
 			toast.error('Something went wrong.')
 		} finally {
@@ -49,7 +49,7 @@ export const CellAction = ({ data }) => {
 		<>
 			<AlertModal
 				title="Danger Zone"
-				description="This action cannot be undone. This will permanently delete the product from our servers."
+				description="This action cannot be undone. This will permanently delete it from our servers."
 				isOpen={open}
 				onClose={() => SetOpen(false)}
 				onConfirm={onDelete}
@@ -72,7 +72,7 @@ export const CellAction = ({ data }) => {
 					</DropdownMenuItem>
 
 					<DropdownMenuItem
-						onClick={() => router.push(`/products/edit/${data.id}`)}
+						onClick={() => router.push(`/${route}/edit/${data.id}`)}
 					>
 						<Edit className="mr-2 h-4 w-4" />
 						Update

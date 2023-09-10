@@ -10,20 +10,16 @@ export const columnsEvent = [
 		header: 'Description',
 	},
 	{
-		accessorKey: 'category',
-		header: 'Category',
-	},
-	{
-		accessorKey: 'address',
-		header: 'Address',
-	},
-	{
-		accessorKey: 'createdAt',
+		accessorKey: 'date',
 		header: 'Date',
+	},
+	{
+		accessorKey: 'hour',
+		header: 'Hour',
 	},
 
 	{
 		id: 'actions',
-		cell: ({ row }) => <CellAction data={row.original} />,
+		cell: ({ row }) => <CellAction data={row.original} route="events"/>,
 	},
 ]

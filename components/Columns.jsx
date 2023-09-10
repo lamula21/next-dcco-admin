@@ -28,6 +28,6 @@ export const columns = [
 
 	{
 		id: 'actions',
-		cell: ({ row }) => <CellAction data={row.original} />,
+		cell: ({ row }) => <CellAction data={row.original} route="products"/>,
 	},
 ]
