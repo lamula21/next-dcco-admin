@@ -21,7 +21,7 @@ export default async function handle(req, res) {
 		const { title, description, imageUrl, date, init_time, end_time, address  } =
 			req.body
 
-		const productDocument = await Event.create({
+		const eventDocument = await Event.create({
 			title,
 			description,
 			address,
@@ -30,8 +30,7 @@ export default async function handle(req, res) {
 			init_time,
 			end_time,
 		})
-
-		res.json(productDocument)
+		res.json(eventDocument)
 	}
 
 	if (method === 'PUT') {

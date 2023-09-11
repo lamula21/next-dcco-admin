@@ -156,6 +156,23 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
+					<Link href={'/newsletters'} className={a}>
+						<i className={'bx bx-news' + i}></i>
+						<span
+							className={cn(
+								linksName,
+								activeSidebar ? 'active opacity-100 pointer-events-auto' : ''
+							)}
+						>
+							Newsletter
+						</span>
+					</Link>
+					<span className={cn(tooltip, activeSidebar ? 'active hidden' : '')}>
+						Newsletter
+					</span>
+				</li>
+
+				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
 					<Link href={'/'} className={a}>
 						<i className={'bx bx-message-square-edit' + i}></i>
 						<span
