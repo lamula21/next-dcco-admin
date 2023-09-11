@@ -18,7 +18,7 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'POST') {
-		const { title, content, imageUrl, url, author, authorDetail, sendDate  } =
+		const { title, content, imageUrl, url, author, authorDetail, sendDate } =
 			req.body
 
 		const newsletterDocument = await Newsletter.create({
@@ -35,10 +35,18 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'PUT') {
-		const { _id, title, content, imageUrl, url, author, authorDetail, sendDate  } =
-			req.body
+		const {
+			_id,
+			title,
+			content,
+			imageUrl,
+			url,
+			author,
+			authorDetail,
+			sendDate,
+		} = req.body
 
-		await Newsletter.findByIdAndUpurl(_id, {
+		await Newsletter.findByIdAndUpdate(_id, {
 			title,
 			content,
 			imageUrl,
