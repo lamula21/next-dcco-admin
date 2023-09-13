@@ -5,14 +5,12 @@ import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { format } from "date-fns"
-
+import { format } from 'date-fns'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import {
 	Form,
-	FormDescription,
 	FormControl,
 	FormField,
 	FormItem,
@@ -41,16 +39,15 @@ export const EventForm = ({ initialData }) => {
 	const toastMessage = initialData ? 'Event updated.' : 'Event created.'
 	const action = initialData ? 'Save changes' : 'Create'
 
-	const defaultValues = initialData ||
-		 {
-				title: '',
-				description: '',
-				address: '',
-				imageUrl: [],
-				init_time: '',
-				end_time: '',
-				date: ''
-		  }
+	const defaultValues = initialData || {
+		title: '',
+		description: '',
+		address: '',
+		imageUrl: [],
+		init_time: '',
+		end_time: '',
+		date: '',
+	}
 
 	const form = useForm({
 		resolve: zodResolver(formSchema),
@@ -80,11 +77,12 @@ export const EventForm = ({ initialData }) => {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className='mt-4 space-y-12 w-full'>
-					<div className='md:grid md:grid-cols-3 gap-8'>
+					className="mt-4 space-y-12 w-full"
+				>
+					<div className="md:grid md:grid-cols-3 gap-8">
 						<FormField
 							control={form.control}
-							name='title'
+							name="title"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Name</FormLabel>
@@ -92,7 +90,7 @@ export const EventForm = ({ initialData }) => {
 										<Input
 											required
 											disabled={loading}
-											placeholder='Event name'
+											placeholder="Event name"
 											{...field}
 										/>
 									</FormControl>
@@ -103,14 +101,14 @@ export const EventForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='description'
+							name="description"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Description</FormLabel>
 									<FormControl>
 										<Textarea
 											disabled={loading}
-											placeholder='Say something about this item'
+											placeholder="Say something about this item"
 											{...field}
 										/>
 									</FormControl>
@@ -121,14 +119,14 @@ export const EventForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='address'
+							name="address"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Address</FormLabel>
 									<FormControl>
-									<Input
+										<Input
 											disabled={loading}
-											placeholder='Event name'
+											placeholder="Event name"
 											{...field}
 										/>
 									</FormControl>
@@ -139,14 +137,14 @@ export const EventForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='date'
+							name="date"
 							render={({ field }) => (
-								<FormItem>
+								<FormItem className="flex flex-col">
 									<FormLabel>Date</FormLabel>
 									<FormControl>
-										<DatePicker 
+										<DatePicker
 											value={field.value}
-											onChange={(date) => field.onChange(format(date, "PPP"))}
+											onChange={(date) => field.onChange(format(date, 'PPP'))}
 										/>
 									</FormControl>
 									<FormMessage />
@@ -156,16 +154,16 @@ export const EventForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='init_time'
+							name="init_time"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>From:</FormLabel>
 									<FormControl>
-									<Input
+										<Input
 											required
 											type="time"
 											disabled={loading}
-											placeholder='Event name'
+											placeholder="Event name"
 											{...field}
 										/>
 									</FormControl>
@@ -176,16 +174,16 @@ export const EventForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='end_time'
+							name="end_time"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>To:</FormLabel>
 									<FormControl>
-									<Input
+										<Input
 											required
 											type="time"
 											disabled={loading}
-											placeholder='Event name'
+											placeholder="Event name"
 											{...field}
 										/>
 									</FormControl>
@@ -197,7 +195,7 @@ export const EventForm = ({ initialData }) => {
 
 					<FormField
 						control={form.control}
-						name='imageUrl'
+						name="imageUrl"
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Images</FormLabel>
@@ -217,7 +215,7 @@ export const EventForm = ({ initialData }) => {
 						)}
 					/>
 
-					<Button disabled={loading} className='ml-auto' type='submit'>
+					<Button disabled={loading} className="ml-auto" type="submit">
 						{action}
 					</Button>
 				</form>
