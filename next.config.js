@@ -14,7 +14,10 @@ const nextConfig = {
 					{ key: 'Access-Control-Allow-Credentials', value: 'true' },
 					{
 						key: 'Access-Control-Allow-Origin',
-						value: 'http://localhost:3001', // origin allowed to access the resource, replace this in production, create a environment variable
+						value:
+							process.env.NODE_ENV === 'production'
+								? process.env.PRODUCTION_APP_URL
+								: 'http://localhost:3001',
 					},
 					{
 						key: 'Access-Control-Allow-Methods',
