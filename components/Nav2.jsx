@@ -5,7 +5,7 @@ import { MembershipIcon } from './Icons/MembershipIcon'
 import { SignOutButton, UserButton } from '@clerk/nextjs'
 import { StoreIcon } from './Icons/StoreIcon'
 
-export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
+export const Nav2 = ({ activeSidebar, SetActiveSidebar, userName }) => {
 	const tooltip =
 		'tooltip absolute left-[122px] top-0 translate-y-[-50%] translate-x-[-50%] rounded-[6px] h-[35px] w-[122px] bg-white leading-[35px] text-center shadow-custom transition-all duration-0 opacity-0 pointer-events-none block'
 
@@ -274,7 +274,7 @@ export const Nav2 = ({ activeSidebar, SetActiveSidebar }) => {
 						<UserButton afterSignOutUrl="/"></UserButton>
 
 						<div className="name_job ml-[10px]">
-							<div className="name text-[15px] font-normal">Jose Valdivia</div>
+							<div className="name text-[15px] font-normal">{userName}</div>
 							<div className="job text-[12px]">Admin</div>
 						</div>
 					</div>

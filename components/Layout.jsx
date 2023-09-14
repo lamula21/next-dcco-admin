@@ -3,12 +3,13 @@ import { Nav2 } from './Nav2'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
-export const Layout = ({ children }) => {
+export const Layout = ({ children, userName }) => {
 	const [activeSidebar, SetActiveSidebar] = useState(false)
 
 	return (
 		<div className="relative w-full h-full">
 			<Nav2
+				userName={userName}
 				activeSidebar={activeSidebar}
 				SetActiveSidebar={SetActiveSidebar}
 			></Nav2>

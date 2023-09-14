@@ -13,7 +13,7 @@ export default function HomePage() {
 
 	if (isSignedIn) {
 		return (
-			<Layout>
+			<Layout userName={user.fullName}>
 				<div className="flex items-center justify-between">
 					<Heading
 						title="Dashboard"
