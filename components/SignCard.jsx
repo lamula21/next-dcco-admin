@@ -21,6 +21,7 @@ export default function SignCard({ signOption }) {
 				<CardHeader className="space-y-5">
 					<Image
 						className="mx-auto"
+						alt="DC Code Logo"
 						src={
 							'https://dccodeofficials.com/wp-content/uploads/2023/07/cropped-dc-code-logo-img-removebg-preview.png'
 						}
