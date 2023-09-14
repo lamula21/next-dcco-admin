@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 
 export const Layout = ({ children, userName }) => {
-	const [activeSidebar, SetActiveSidebar] = useState(false)
+	const [activeSidebar, SetActiveSidebar] = useState(true)
 
 	return (
 		<div className="relative w-full h-full">
@@ -18,9 +18,8 @@ export const Layout = ({ children, userName }) => {
 					'home_content text-black bg-white absolute w-custom left-[78px] h-full z-0 p-10',
 					activeSidebar ? 'active w-custom2 left-[240px]' : ''
 				)}
-				onClick={() => SetActiveSidebar(false)}
 			>
-				<div className="flex-1 space-y-4 pb-10 bg-white">{children}</div>
+				<div className="flex-1 space-y-4 pb-10">{children}</div>
 			</div>
 		</div>
 	)
