@@ -18,7 +18,7 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'POST') {
-		const { title, description, imageUrl, date, init_time, end_time, address  } =
+		const { title, description, imageUrl, date, init_time, end_time, address, url, subtitle } =
 			req.body
 
 		const eventDocument = await Event.create({
@@ -29,12 +29,14 @@ export default async function handle(req, res) {
 			date,
 			init_time,
 			end_time,
+			url,
+			subtitle
 		})
 		res.json(eventDocument)
 	}
 
 	if (method === 'PUT') {
-		const { _id, title, description, imageUrl, date, init_time, end_time, address  } =
+		const { _id, title, description, imageUrl, date, init_time, end_time, address, url, subtitle } =
 			req.body
 
 		await Event.findByIdAndUpdate(_id, {
@@ -45,6 +47,8 @@ export default async function handle(req, res) {
 			init_time,
 			end_time,
 			address,
+			url,
+			subtitle
 		})
 
 		res.json(true)

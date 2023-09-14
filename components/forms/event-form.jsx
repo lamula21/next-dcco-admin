@@ -26,11 +26,13 @@ import { ImageUpload } from '../ImageUpload'
 const formSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(0),
-	date: z.string().min(0),
-	init_time: z.string().min(0),
-	end_time: z.string().min(0),
+	date: z.string().min(1),
+	init_time: z.string().min(1),
+	end_time: z.string().min(1),
 	imageUrl: z.string().array(),
-	address: z.string().min(1),
+	address: z.string().min(0),
+	url: z.string().min(0),
+	subtitle: z.string().min(0),
 })
 
 export const EventForm = ({ initialData }) => {
@@ -49,7 +51,9 @@ export const EventForm = ({ initialData }) => {
 				imageUrl: [],
 				init_time: '',
 				end_time: '',
-				date: ''
+				date: '',
+				url: '',
+				subtitle: ''
 		  }
 
 	const form = useForm({
@@ -128,7 +132,43 @@ export const EventForm = ({ initialData }) => {
 									<FormControl>
 									<Input
 											disabled={loading}
-											placeholder='Event name'
+											placeholder='Event address'
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='url'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Url</FormLabel>
+									<FormControl>
+									<Input
+											disabled={loading}
+											placeholder='Event url'
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name='subtitle'
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Subtitle</FormLabel>
+									<FormControl>
+									<Input
+											disabled={loading}
+											placeholder='Event subtitle'
 											{...field}
 										/>
 									</FormControl>

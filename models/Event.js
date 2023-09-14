@@ -9,6 +9,8 @@ const EventSchema = new Schema(
 		end_time: { type: String, require: true },
 		imageUrl: [{ type: String }],
 		address: { type: String },
+		url: { type: String },
+		subtitle: { type: String }
 	},
 	{
 		timestamps: true,
