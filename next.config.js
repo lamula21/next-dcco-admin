@@ -16,7 +16,7 @@ const nextConfig = {
 						key: 'Access-Control-Allow-Origin',
 						value:
 							process.env.NODE_ENV === 'production'
-								? process.env.PRODUCTION_APP_URL
+								? `${process.env.PRODUCTION_APP_URL}`
 								: 'http://localhost:3001',
 					},
 					{
