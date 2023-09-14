@@ -29,7 +29,7 @@ export function DatePicker({
 						!value && 'text-muted-foreground'
 					)}
 				>
-					{value ? format(value, 'PPP') : <span>Pick a date</span>}
+					{value ? value.toString() : <span>Pick a date</span>}
 					<i className="bx bx-calendar"></i>
 				</Button>
 			</PopoverTrigger>

@@ -16,28 +16,22 @@ export default function DeleteProductPage() {
 
 	async function deleteProduct() {
 		try {
-			SetLoading(true)
 			await axios.delete('/api/products?id=' + id)
 			toast.success('Product deleted succesfully.')
 			router.push('/products')
 		} catch (error) {
 			toast.error('Something went wrong.')
-		} finally {
-			SetLoading(false)
 		}
 	}
 
-	useEffect(async () => {
+	useEffect(() => {
 		if (id) {
-			// GET - fetch with a query to DB to retrieve document to be deleted
-			// from /api/products.jsx
-			await axios.get('/api/products?id=' + id).then((response) => {
+			axios.get('/api/products?id=' + id).then((response) => {
 				setProductInfo(response.data)
 			})
 		}
 	}, [id])
 
-	// Note: ...productInfo (spread operator) passes individual props to the component
 	return (
 		<Layout>
 			<h1 className="text-center">
