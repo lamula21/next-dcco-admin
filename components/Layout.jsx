@@ -1,4 +1,3 @@
-import { Nav } from '@/components/Nav'
 import { Nav2 } from './Nav2'
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
@@ -21,7 +20,7 @@ export const Layout = ({ children, userName }) => {
 				)}
 				onClick={() => SetActiveSidebar(false)}
 			>
-				<div className="flex-1 space-y-4 pb-10">{children}</div>
+				<div className="flex-1 space-y-4 pb-10 bg-white">{children}</div>
 			</div>
 		</div>
 	)
