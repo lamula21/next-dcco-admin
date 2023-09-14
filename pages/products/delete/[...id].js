@@ -27,11 +27,11 @@ export default function DeleteProductPage() {
 		}
 	}
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (id) {
 			// GET - fetch with a query to DB to retrieve document to be deleted
 			// from /api/products.jsx
-			axios.get('/api/products?id=' + id).then((response) => {
+			await axios.get('/api/products?id=' + id).then((response) => {
 				setProductInfo(response.data)
 			})
 		}

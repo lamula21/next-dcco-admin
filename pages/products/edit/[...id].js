@@ -16,11 +16,11 @@ export default function EditProductPage() {
 	const { id } = router.query // retrieve id from url
 	const [productInfo, setProductInfo] = useState(null)
 
-	useEffect(() => {
+	useEffect(async () => {
 		if (id) {
 			// GET - fetch with a query to DB to retrieve single document by id
 			// from /api/products.jsx
-			axios.get('/api/products?id=' + id).then((response) => {
+			await axios.get('/api/products?id=' + id).then((response) => {
 				setProductInfo(response.data)
 			})
 		}
@@ -30,8 +30,8 @@ export default function EditProductPage() {
 	return (
 		<Layout>
 			<PreviousButton />
-			<Heading title='Edit product' description='Edit a product' />
-			<Separator className='mt-4' />
+			<Heading title="Edit product" description="Edit a product" />
+			<Separator className="mt-4" />
 			{productInfo && <ProductForm initialData={productInfo}></ProductForm>}
 		</Layout>
 	)
