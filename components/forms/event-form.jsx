@@ -24,11 +24,13 @@ import { ImageUpload } from '../ImageUpload'
 const formSchema = z.object({
 	title: z.string().min(1),
 	description: z.string().min(0),
-	date: z.string().min(0),
-	init_time: z.string().min(0),
-	end_time: z.string().min(0),
+	date: z.string().min(1),
+	init_time: z.string().min(1),
+	end_time: z.string().min(1),
 	imageUrl: z.string().array(),
-	address: z.string().min(1),
+	address: z.string().min(0),
+	url: z.string().min(0),
+	subtitle: z.string().min(0),
 })
 
 export const EventForm = ({ initialData }) => {
@@ -47,6 +49,8 @@ export const EventForm = ({ initialData }) => {
 		init_time: '',
 		end_time: '',
 		date: '',
+		url: '',
+		subtitle: '',
 	}
 
 	const form = useForm({
@@ -85,12 +89,30 @@ export const EventForm = ({ initialData }) => {
 							name="title"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Name</FormLabel>
+									<FormLabel>Heading</FormLabel>
 									<FormControl>
 										<Input
 											required
 											disabled={loading}
-											placeholder="Event name"
+											placeholder="Event title"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="subtitle"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Subheading</FormLabel>
+									<FormControl>
+										<Input
+											disabled={loading}
+											placeholder="Event subtitle"
 											{...field}
 										/>
 									</FormControl>
@@ -108,25 +130,7 @@ export const EventForm = ({ initialData }) => {
 									<FormControl>
 										<Textarea
 											disabled={loading}
-											placeholder="Say something about this item"
-											{...field}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-
-						<FormField
-							control={form.control}
-							name="address"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Address</FormLabel>
-									<FormControl>
-										<Input
-											disabled={loading}
-											placeholder="Event name"
+											placeholder="Say something about this event..."
 											{...field}
 										/>
 									</FormControl>
@@ -184,6 +188,42 @@ export const EventForm = ({ initialData }) => {
 											type="time"
 											disabled={loading}
 											placeholder="Event name"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="address"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Location</FormLabel>
+									<FormControl>
+										<Input
+											disabled={loading}
+											placeholder="Event location"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
+							name="url"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Url</FormLabel>
+									<FormControl>
+										<Input
+											disabled={loading}
+											placeholder="Event url"
 											{...field}
 										/>
 									</FormControl>

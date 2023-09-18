@@ -177,6 +177,29 @@ export function Nav2({ activeSidebar, SetActiveSidebar, userName }) {
 				</li>
 
 				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
+					<Link
+						href={'/newsletters'}
+						className={cn(anchorClassName, 'flex justify-between')}
+					>
+						<div>
+							<i className={'bx bx-news' + iClassName}></i>
+							<span
+								className={cn(
+									linksNameClassName,
+									activeSidebar
+										? 'opacity-100 pointer-events-auto'
+										: 'group-hover:opacity-100 group-hover:pointer-events-auto'
+								)}
+							>
+								Newsletter
+							</span>
+						</div>
+
+						<Badge className="bg-red-600 mr-1">Alpha</Badge>
+					</Link>
+				</li>
+
+				<li className="relative h-[50px] w-full my-0 mx-[5px] list-none leading-[50px]">
 					<Link href={'/'} className={anchorClassName}>
 						<i className={'bx bx-message-square-edit' + iClassName}></i>
 						<span

@@ -30,7 +30,7 @@
 		"pages/sso-callback/index.tsx",
 		"components/auth/sso-callback.tsx",
 		"components/auth/oauth-signin.tsx",
-		"components/SignCard.jsx",
+		"components/SignInCard.jsx",
 		"components/DataTable.jsx",
 		"components/Columns.jsx",
 		"components/DataTable.jsx"
