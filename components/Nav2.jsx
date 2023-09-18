@@ -172,7 +172,16 @@ export function Nav2({ activeSidebar, SetActiveSidebar, userName }) {
 							</span>
 						</div>
 
-						<Badge className="bg-indigo-600 mr-1">New</Badge>
+						<Badge
+							className={cn(
+								'bg-indigo-600 mr-1 opacity-0 pointer-events-none',
+								activeSidebar
+									? 'opacity-100 pointer-events-auto'
+									: 'group-hover:opacity-100 group-hover:pointer-events-auto'
+							)}
+						>
+							New
+						</Badge>
 					</Link>
 				</li>
 
@@ -195,7 +204,16 @@ export function Nav2({ activeSidebar, SetActiveSidebar, userName }) {
 							</span>
 						</div>
 
-						<Badge className="bg-red-600 mr-1">Alpha</Badge>
+						<Badge
+							className={cn(
+								'bg-red-600 mr-1 opacity-0 pointer-events-none',
+								activeSidebar
+									? 'opacity-100 pointer-events-auto'
+									: 'group-hover:opacity-100 group-hover:pointer-events-auto'
+							)}
+						>
+							Alpha
+						</Badge>
 					</Link>
 				</li>
 
