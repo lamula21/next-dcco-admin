@@ -107,3 +107,36 @@ body,
 	@apply top-[50%] opacity-100;
 	transition: all 0.5s ease;
 }
+
+h1.ce-header{
+	@apply text-6xl
+}
+
+h2.ce-header{
+	@apply text-5xl
+}
+
+h3.ce-header{
+	@apply text-4xl
+}
+
+h4.ce-header{
+	@apply text-3xl
+}
+
+h5.ce-header{
+	@apply text-2xl
+}
+
+h6.ce-header{
+	@apply text-xl
+}
+
+.ce-block{
+    white-space: normal; /* Allow text to wrap to the next line */
+    word-wrap: break-word;
+}
+
+.ce-block__content{
+	@apply bg-gray-200
+}

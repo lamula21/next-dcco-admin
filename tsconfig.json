@@ -33,7 +33,8 @@
 		"components/SignInCard.jsx",
 		"components/DataTable.jsx",
 		"components/Columns.jsx",
-		"components/DataTable.jsx"
+		"components/DataTable.jsx",
+		"components/Editor.tsx",
 	],
 	"exclude": ["node_modules"]
 }

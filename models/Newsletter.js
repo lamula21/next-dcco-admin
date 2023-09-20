@@ -3,7 +3,6 @@ import { Schema, model, models } from 'mongoose'
 const NewsletterSchema = new Schema(
 	{
 		title: { type: String, require: true },
-		imageUrl: [{ type: String }],
 		content: { type: Object, require: true },
 		url: { type: String, require: true },
 		author: { type: String, require: true },
