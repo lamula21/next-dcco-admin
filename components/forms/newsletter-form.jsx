@@ -5,23 +5,20 @@ import { useRouter } from 'next/navigation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
-import { format } from "date-fns"
-
 
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import {
 	Form,
-	FormDescription,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Textarea } from '@/components/ui/textarea'
-import { DatePicker } from '@/components/ui/date-picker'
+
 import { ImageUpload } from '../ImageUpload'
+import Editor from '../Editor'
+import { Button } from '../ui/button'
 
 const formSchema = z.object({
 	title: z.string().min(1),
@@ -30,7 +27,7 @@ const formSchema = z.object({
 	author: z.string().min(0),
 	authorDetail: z.string().min(0),
 	sendData: z.date(),
-	imageUrl: z.string().array()
+	imageUrl: z.string().array(),
 })
 
 export const NewsletterForm = ({ initialData }) => {
@@ -38,19 +35,20 @@ export const NewsletterForm = ({ initialData }) => {
 
 	const [loading, SetLoading] = useState(false)
 
-	const toastMessage = initialData ? 'Newsletter updated.' : 'Newsletter created.'
+	const toastMessage = initialData
+		? 'Newsletter updated.'
+		: 'Newsletter created.'
 	const action = initialData ? 'Save changes' : 'Create'
 
-	const defaultValues = initialData ||
-		 {
-				title: '',
-				content: {},
-				url: '',
-				imageUrl: [],
-				author: '',
-				authorDetail: '',
-				sendData: ''
-		  }
+	const defaultValues = initialData || {
+		title: '',
+		content: {},
+		url: '',
+		imageUrl: [],
+		author: '',
+		authorDetail: '',
+		sendData: '',
+	}
 
 	const form = useForm({
 		resolve: zodResolver(formSchema),
@@ -80,11 +78,12 @@ export const NewsletterForm = ({ initialData }) => {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className='mt-4 space-y-12 w-full'>
-					<div className='md:grid md:grid-cols-3 gap-8'>
+					className="mt-4 space-y-12 w-full"
+				>
+					<div className="md:grid md:grid-cols-3 gap-8">
 						<FormField
 							control={form.control}
-							name='title'
+							name="title"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Title</FormLabel>
@@ -92,7 +91,7 @@ export const NewsletterForm = ({ initialData }) => {
 										<Input
 											required
 											disabled={loading}
-											placeholder='Newsletter name'
+											placeholder="Newsletter name"
 											{...field}
 										/>
 									</FormControl>
@@ -103,14 +102,14 @@ export const NewsletterForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='author'
+							name="author"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Author</FormLabel>
 									<FormControl>
-									<Input
+										<Input
 											disabled={loading}
-											placeholder='Author name'
+											placeholder="Author name"
 											{...field}
 										/>
 									</FormControl>
@@ -121,14 +120,14 @@ export const NewsletterForm = ({ initialData }) => {
 
 						<FormField
 							control={form.control}
-							name='authorDetail'
+							name="authorDetail"
 							render={({ field }) => (
 								<FormItem>
 									<FormLabel>Author details</FormLabel>
 									<FormControl>
-									<Input
+										<Input
 											disabled={loading}
-											placeholder='Author details'
+											placeholder="Author details"
 											{...field}
 										/>
 									</FormControl>
@@ -140,19 +139,16 @@ export const NewsletterForm = ({ initialData }) => {
 
 					<FormField
 						control={form.control}
-						name='imageUrl'
+						name="content"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Images</FormLabel>
+								<FormLabel>Write here:</FormLabel>
 								<FormControl>
-									<ImageUpload
-										value={field.value.map((image) => image)}
-										onChange={(url) => field.onChange([...field.value, url])}
-										onRemove={(url) =>
-											field.onChange([
-												...field.value.filter((current) => current !== url),
-											])
-										}
+									<Editor
+										value={field.value}
+										onChange={(data) => field.onChange(data)}
+										action={action}
+										loading={loading}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -160,7 +156,7 @@ export const NewsletterForm = ({ initialData }) => {
 						)}
 					/>
 
-					<Button disabled={loading} className='ml-auto' type='submit'>
+					<Button disabled={loading} className="ml-auto" type="submit">
 						{action}
 					</Button>
 				</form>

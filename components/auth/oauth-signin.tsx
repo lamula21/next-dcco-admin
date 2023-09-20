@@ -10,8 +10,6 @@ import { Icons } from '@/components/Icons/icons'
 
 const oauthProviders = [
 	{ name: 'Google', strategy: 'oauth_google', icon: 'google' },
-	{ name: 'Facebook', strategy: 'oauth_facebook', icon: 'facebook' },
-	{ name: 'Discord', strategy: 'oauth_discord', icon: 'discord' },
 ] satisfies {
 	name: string
 	icon: keyof typeof Icons
@@ -43,7 +41,7 @@ export function OAuthSignIn() {
 	}
 
 	return (
-		<div className="grid grid-cols-1 gap-2 sm:grid-cols-3 sm:gap-4">
+		<div className="grid sm:w-[350px]">
 			{oauthProviders.map((provider) => {
 				const Icon = Icons[provider.icon]
 
@@ -52,7 +50,7 @@ export function OAuthSignIn() {
 						aria-label={`Sign in with ${provider.name}`}
 						key={provider.strategy}
 						variant="outline"
-						className="w-full bg-background sm:w-auto"
+						className="w-full bg-background "
 						onClick={() => void oauthSignIn(provider.strategy)}
 						disabled={isLoading !== null}
 					>

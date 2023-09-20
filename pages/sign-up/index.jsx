@@ -1,10 +1,10 @@
 import AuthLayout from '@/components/AuthLayout'
-import SignCard from '@/components/SignCard'
+import { SignUpCard } from '@/components/SignUpCard'
 
 export default function SignUpPage() {
 	return (
 		<AuthLayout>
-			<SignCard signOption="signUp" />
+			<SignUpCard />
 		</AuthLayout>
 	)
 }

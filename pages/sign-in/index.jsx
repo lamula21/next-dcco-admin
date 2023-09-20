@@ -1,11 +1,10 @@
 import AuthLayout from '@/components/AuthLayout'
-import { SignIn } from '@clerk/nextjs'
-import SignCard from '@/components/SignCard'
+import { SignInCard } from '@/components/SignInCard'
 
 export default function SignInPage() {
 	return (
 		<AuthLayout>
-			<SignCard signOption="signIn" />
+			<SignInCard />
 		</AuthLayout>
 	)
 }

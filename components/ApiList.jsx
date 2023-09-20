@@ -1,9 +1,7 @@
 import { ApiAlert } from '@/components/ApiAlert'
-import { useRouter } from 'next/router'
 import { useOrigin } from '@/hooks/UseOrigin'
 
 export const ApiList = ({ entityName, entityIdName }) => {
-	const router = useRouter()
 	const origin = useOrigin()
 	const baseUrl = `${origin}/api`
 

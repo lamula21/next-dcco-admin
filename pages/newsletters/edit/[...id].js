@@ -9,7 +9,6 @@ import Heading from '@/components/Heading'
 import { Separator } from '@/components/ui/separator'
 import { PreviousButton } from '@/components/ui/previous'
 
-
 export default function EditNewsletterPage() {
 	const router = useRouter()
 	const { id } = router.query // retrieve id from url
@@ -27,9 +26,11 @@ export default function EditNewsletterPage() {
 	return (
 		<Layout>
 			<PreviousButton />
-			<Heading title='Edit newsletter' description='Edit a newsletter' />
-			<Separator className='mt-4' />
-			{newsletterInfo && <NewsletterForm initialData={newsletterInfo}></NewsletterForm>}
+			<Heading title="Edit newsletter" description="Edit a newsletter" />
+			<Separator className="mt-4" />
+			{newsletterInfo && (
+				<NewsletterForm initialData={newsletterInfo}></NewsletterForm>
+			)}
 		</Layout>
 	)
 }

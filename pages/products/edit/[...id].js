@@ -18,20 +18,17 @@ export default function EditProductPage() {
 
 	useEffect(() => {
 		if (id) {
-			// GET - fetch with a query to DB to retrieve single document by id
-			// from /api/products.jsx
 			axios.get('/api/products?id=' + id).then((response) => {
 				setProductInfo(response.data)
 			})
 		}
 	}, [id])
 
-	// Note: ...productInfo (spread operator) passes individual props to the component
 	return (
 		<Layout>
 			<PreviousButton />
-			<Heading title='Edit product' description='Edit a product' />
-			<Separator className='mt-4' />
+			<Heading title="Edit product" description="Edit a product" />
+			<Separator className="mt-4" />
 			{productInfo && <ProductForm initialData={productInfo}></ProductForm>}
 		</Layout>
 	)

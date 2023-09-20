@@ -40,6 +40,7 @@ export default function EventsPage({ events }) {
 				</Button>
 			</div>
 			<Separator />
+
 			{/* searchKey = accessorKey from @/components/Columns  */}
 			<DataTable
 				searchKey="title"

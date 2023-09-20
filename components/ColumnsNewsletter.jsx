@@ -15,6 +15,6 @@ export const columnsNewsletter = [
 	},
 	{
 		id: 'actions',
-		cell: ({ row }) => <CellAction data={row.original} route="newsletters"/>,
+		cell: ({ row }) => <CellAction data={row.original} route="newsletters" />,
 	},
 ]
