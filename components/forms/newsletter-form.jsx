@@ -7,7 +7,6 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
 import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
 import {
 	Form,
 	FormControl,
@@ -18,6 +17,8 @@ import {
 } from '@/components/ui/form'
 
 import { ImageUpload } from '../ImageUpload'
+import Editor from '../Editor'
+import { Button } from '../ui/button'
 
 const formSchema = z.object({
 	title: z.string().min(1),
@@ -138,19 +139,16 @@ export const NewsletterForm = ({ initialData }) => {
 
 					<FormField
 						control={form.control}
-						name="imageUrl"
+						name="content"
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Images</FormLabel>
+								<FormLabel>Write here:</FormLabel>
 								<FormControl>
-									<ImageUpload
-										value={field.value.map((image) => image)}
-										onChange={(url) => field.onChange([...field.value, url])}
-										onRemove={(url) =>
-											field.onChange([
-												...field.value.filter((current) => current !== url),
-											])
-										}
+									<Editor 
+										value = {field.value}
+										onChange = {(data) => field.onChange(data)}
+										action={action}
+										loading={loading}
 									/>
 								</FormControl>
 								<FormMessage />
@@ -158,9 +156,10 @@ export const NewsletterForm = ({ initialData }) => {
 						)}
 					/>
 
-					<Button disabled={loading} className="ml-auto" type="submit">
-						{action}
-					</Button>
+            	<Button disabled={loading} className="ml-auto" type="submit">
+					{action}
+				</Button>
+
 				</form>
 			</Form>
 		</>

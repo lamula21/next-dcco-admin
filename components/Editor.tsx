@@ -1,23 +1,60 @@
 import { useEffect, useRef, useState } from "react";
 import EditorJS from "@editorjs/editorjs";
+import { Button } from "./ui/button";
 
-export default function Editor({value}) {
+export default function Editor({value, onChange}) {
     const [isMounted, setIsMounted] = useState(false)
     const ref = useRef<EditorJS>()
 
     const initializeEditor = async () => {
         const EditorJS = (await import("@editorjs/editorjs")).default
         const Header = (await import("@editorjs/header")).default
-        const List = (await import("@editorjs/list")).default
+        const ImageTool = (await import("@editorjs/image")).default
 
         if (!ref.current){
             const editor = new EditorJS({
                 holder: 'editorjs',
                 tools: {
                     header: Header,
-                    list: List
+                    image: {
+                        class: ImageTool,
+                        config:{
+                            uploader: {
+                                async uploadByFile(file) {
+                            		const formData = new FormData()
+                            		formData.append('file', file)
+                            		formData.append('upload_preset', 'unewhn6p')
+                                                            
+                            		const URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL
+                            		try {
+                            			const response = await fetch(URL, {
+                            				method: 'POST',
+                            				body: formData,
+                            			})
+                            			const data = await response.json()
+                                        return {
+                                            success: 1,
+                                            file: {
+                                                url: data.secure_url
+                                            }
+                                        }
+                            		} catch (error) {
+                                        {
+                                            success: 0
+                                        }
+                            		}
+                                }
+                            }
+                        }
+                    }
                 },
-                data: value
+                data: value,
+                placeholder: 'Let`s write an awesome story!',
+                onChange: (api, event) => {
+                    api.saver.save().then((outputData) => {
+                        onChange(outputData)
+                    })
+                }
             })
 
             ref.current = editor
@@ -45,11 +82,11 @@ export default function Editor({value}) {
             }
         }
     }, [isMounted])
-
+    
     const save = () => {
         if(ref.current){
             ref.current.save().then((outputData) => {
-                console.log("Article data:", {outputData})
+                onChange(outputData)
             })
         }
     }

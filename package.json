@@ -59,6 +59,7 @@
 		"zod": "^3.21.4"
 	},
 	"devDependencies": {
+		"@editorjs/image": "^2.8.1",
 		"@types/node": "^20.3.3",
 		"@types/react": "^18.2.14",
 		"@types/react-dom": "18.2.6",
