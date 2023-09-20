@@ -10,11 +10,7 @@ const EventSchema = new Schema(
 		imageUrl: [{ type: String }],
 		address: { type: String },
 		url: { type: String },
-<<<<<<< HEAD
-		subtitle: { type: String }
-=======
 		subtitle: { type: String },
->>>>>>> ede9701c87bfbf6b2d4430059c1abe0d45dc14a0
 	},
 	{
 		timestamps: true,
