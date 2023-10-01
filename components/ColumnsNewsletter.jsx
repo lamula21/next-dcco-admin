@@ -1,4 +1,5 @@
 import { CellAction } from './CellAction'
+import { CellActionNewsletter } from './CellActionNewsLetter'
 
 export const columnsNewsletter = [
 	{
@@ -12,6 +13,7 @@ export const columnsNewsletter = [
 	{
 		accessorKey: 'sendDate',
 		header: 'Send At',
+		cell: ({ row }) => <CellActionNewsletter data={row.original}/>,
 	},
 	{
 		id: 'actions',

@@ -35,6 +35,7 @@
 		"components/Columns.jsx",
 		"components/DataTable.jsx",
 		"components/Editor.tsx",
+		"components/newsletterTemplate.tsx",
 	],
 	"exclude": ["node_modules"]
 }
