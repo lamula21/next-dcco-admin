@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { toast } from 'sonner'
 import { Button } from './ui/button'
 
-export const CellActionNewsletter = ({ data, route }) => {
+export const CellActionNewsletter = ({ data }) => {
 	const router = useRouter() // manipulate url and navigation
 
 	const [loading, SetLoading] = useState(false)
@@ -14,18 +14,18 @@ export const CellActionNewsletter = ({ data, route }) => {
 	}
 
 	const sendEmail = async () => {
-		console.log({data})
 		try {
 			SetLoading(true)
-			const sentEmail = await axios.post("/api/send", {})
-
+			const sentEmail = await axios.post("/api/send", {content: data.content, to: ["ismaelpsy.12@gmail.com"], subject: data.title})
 			const sendDate = new Date() 
-
 			const newData = {...data, sendDate: sendDate.toLocaleString(), _id: data.id}
-
 			const updatedNewsletter = await axios.put('/api/newsletters', newData)
 
-			if (sentEmail.data && updatedNewsletter.data) toast.success('Sent successfully.')
+			if (sentEmail.data.id && updatedNewsletter.data) {
+				toast.success('Sent successfully.')
+			}else{
+				toast.error('Something went wrong in our servers.')
+			}
 		} catch (error) {
 			toast.error('Something went wrong in our servers.')
 		} finally {

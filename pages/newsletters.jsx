@@ -19,6 +19,7 @@ export default function NewslettersPage({ newsletters }) {
 		title: item.title,
 		author: item.author,
 		sendDate: item.sendDate,
+		content: item.content
 	}))
 
 	return (
