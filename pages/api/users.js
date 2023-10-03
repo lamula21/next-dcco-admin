@@ -74,7 +74,7 @@ export default async function handle(req, res) {
 
 	if (method === 'PATCH') {
 		try {
-			const { _id, password, ...data } = req.body
+			const { _id, password, ...data } = JSON.parse(req.body)
 
 			if (password) {
 				const hashedPassword = await bcrypt.hash(password, 12)
