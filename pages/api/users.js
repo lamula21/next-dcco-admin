@@ -43,8 +43,6 @@ export default async function handle(req, res) {
 	if (method === 'POST') {
 		const { email, password } = JSON.parse(req.body)
 
-		console.log(email, password)
-
 		try {
 			const user = await User.findOne({ email })
 
