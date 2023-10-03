@@ -76,6 +76,12 @@ export default async function handle(req, res) {
 		try {
 			const { _id, password, ...data } = JSON.parse(req.body)
 
+			const foundUser = await User.findOne({ _id })
+
+			if (!foundUser) {
+				return res.status(400).json({ error: 'User not found' })
+			}
+
 			if (password) {
 				const hashedPassword = await bcrypt.hash(password, 12)
 				data.password = hashedPassword
@@ -83,13 +89,11 @@ export default async function handle(req, res) {
 
 			const dataToUpdate = { ...data }
 
-			console.log(dataToUpdate)
-
 			await User.updateOne({ _id }, dataToUpdate)
 
-			res.json(true)
+			return res.status(200).json({ message: 'Success' })
 		} catch (error) {
-			res.status(500).json({ message: error.message })
+			return res.status(500).json({ message: error.message })
 		}
 	}
 
@@ -97,10 +101,25 @@ export default async function handle(req, res) {
 		if (req.query?.id) {
 			try {
 				await User.findOneAndDelete({ _id: req.query.id })
-				res.json(true)
+				return res.json(true)
 			} catch (error) {
-				res.status(500).json({ message: error.message })
+				return res.status(500).json({ message: error.message })
 			}
 		}
+	}
+
+	// fixes CORS error
+	if (method === 'OPTIONS') {
+		res.setHeader('Access-Control-Allow-Origin', '*')
+		res.setHeader(
+			'Access-Control-Allow-Methods',
+			'GET, POST, PATCH, DELETE, OPTIONS'
+		)
+		res.setHeader(
+			'Access-Control-Allow-Headers',
+			'Content-Type, text/plain;charset=UTF-8, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, multipart/form-data'
+		)
+
+		return res.status(200).json({ message: 'Success' })
 	}
 }
