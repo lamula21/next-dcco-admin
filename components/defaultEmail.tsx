@@ -31,18 +31,27 @@ interface Content {
 
 const formatContent = (content: Content) => {
 	const blocks = content.blocks
-	const data = blocks.map((block) => {
+	const data = blocks.map((block, index) => {
 		const type = block.type
 		if (type == 'header') {
-			return <Heading className="text-3xl">{block.data.text}</Heading>
+			return (
+				<Heading key={index} className="text-3xl">
+					{block.data.text}
+				</Heading>
+			)
 		}
 		if (type == 'paragraph') {
 			const text = block.data.text.replace(/<br\s*\/?>/gi, '')
-			return <Text className="text-lg font-medium text-gray-700">{text}</Text>
+			return (
+				<Text key={index} className="text-lg font-medium text-gray-700">
+					{text}
+				</Text>
+			)
 		}
 		if (type == 'image') {
 			return (
 				<Img
+					key={index}
 					className=" inline"
 					src={block.data.file.url}
 					width="400"
