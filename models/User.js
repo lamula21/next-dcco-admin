@@ -2,7 +2,12 @@ import { Schema, model, models } from 'mongoose'
 // models -> all models created by developer
 
 const UserSchema = new Schema({
-	// we can also validate
+	name: {
+		type: String,
+		required: false,
+		minLength: [3, 'Fullname must be at least 3 characters'],
+		maxLength: [50, 'Fullname must be at most 50 characters'],
+	},
 	email: {
 		type: String,
 		unique: [true, 'Email must be unique'],
@@ -18,12 +23,6 @@ const UserSchema = new Schema({
 		select: false, // find() won't return password to front-end
 	},
 
-	fullname: {
-		type: String,
-		required: false,
-		minLength: [3, 'Fullname must be at least 3 characters'],
-		maxLength: [50, 'Fullname must be at most 50 characters'],
-	},
 	title: {
 		type: String,
 		required: false,
