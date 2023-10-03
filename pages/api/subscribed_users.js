@@ -18,22 +18,33 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'POST') {
-		const {
-			email,
-		} = req.body
+		const { fullname, email } = JSON.parse(req.body)
+
+		const subscriberDB = await SubscribedUser.findOne({ email })
+
+		console.log(fullname, email)
+		console.log(subscriberDB)
+
+		if (subscriberDB) {
+			return res.status(400).json({
+				message: 'You have already subscribed to our newsletter.',
+			})
+		}
 
 		const subscribed_userDocument = await SubscribedUser.create({
+			fullname,
 			email,
 		})
 
-		res.json(subscribed_userDocument)
+		const savedSubscriber = await subscribed_userDocument.save()
+
+		console.log(savedSubscriber)
+
+		res.status(200).json(savedSubscriber)
 	}
 
 	if (method === 'PUT') {
-		const {
-			_id,
-			email,
-		} = req.body
+		const { _id, email } = req.body
 
 		await SubscribedUser.findByIdAndUpdate(_id, {
 			email,
