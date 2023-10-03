@@ -6,32 +6,30 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/DataTable'
-import { columnsNewsletter } from '@/components/ColumnsNewsletter'
+import { columnsSubscribedUser } from '@/components/ColumnsSubscribedUser'
 import { ApiList } from '@/components/ApiList'
 import { fetchData } from '@/services/fetchData'
 
-export default function NewslettersPage({ newsletters }) {
+export default function SubscribedUsersPage({ subscribed_users }) {
 	const router = useRouter()
 
 	// Removing unnecessary fields
-	const formattedNewsletters = newsletters.map((item) => ({
+	const formattedSubscribedUsers = subscribed_users.map((item) => ({
 		id: item._id,
-		title: item.title,
-		author: item.author,
-		sendDate: item.sendDate,
-		content: item.content
+		email: item.email,
+		created_at: item.createdAt,
 	}))
 
 	return (
 		<Layout>
 			<div className="flex items-center justify-between">
 				<Heading
-					title={`Newsletters (${newsletters.length})`}
-					author="Manage newsletters for DCCO"
+					title={`SubscribedUsers (${subscribed_users.length})`}
+					description="Manage subscribed_users for DCCO"
 				/>
 
 				<Button
-					onClick={() => router.push(`/newsletters/new`)}
+					onClick={() => router.push(`/subscribed_users/new`)}
 					variant="default"
 					size="sm"
 				>
@@ -40,24 +38,25 @@ export default function NewslettersPage({ newsletters }) {
 				</Button>
 			</div>
 			<Separator />
+
 			{/* searchKey = accessorKey from @/components/Columns  */}
 			<DataTable
-				searchKey="title"
-				columns={columnsNewsletter}
-				data={formattedNewsletters}
+				searchKey="email"
+				columns={columnsSubscribedUser}
+				data={formattedSubscribedUsers}
 			/>
 
-			<Heading title="API" author="API Calls for Newsletters" />
+			<Heading title="API" description="API Calls for SubscribedUsers" />
 			<Separator />
-			<ApiList entityName="newsletters" entityIdName="newsletterID" />
+			<ApiList entityName="subscribed_users" entityIdName="subscribed_userID" />
 		</Layout>
 	)
 }
 
 /* SERVER-SIDE FETCH */
 export async function getServerSideProps() {
-	const newsletters = await fetchData('/api/newsletters')
+	const subscribed_users = await fetchData('/api/subscribed_users')
 	return {
-		props: { newsletters },
+		props: { subscribed_users },
 	}
 }

@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@react-email/components": "0.0.6",
 		"@auth/mongodb-adapter": "^1.0.0",
 		"@clerk/nextjs": "^4.21.13",
 		"@cloudinary/url-gen": "^1.10.1",
@@ -54,6 +55,7 @@
 		"react-dropzone": "^14.2.3",
 		"react-hook-form": "^7.45.1",
 		"react-spinners": "^0.13.8",
+		"resend": "^1.1.0",
 		"slate": "^0.94.1",
 		"slate-react": "^0.98.3",
 		"sonner": "^0.5.0",
