@@ -46,6 +46,12 @@ const UserSchema = new Schema({
 		required: false,
 		default: null,
 	},
+
+	creditcard: {
+		type: Object,
+		required: false,
+		default: null,
+	},
 })
 
 // prevent model User repetitively

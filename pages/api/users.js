@@ -76,7 +76,7 @@ export default async function handle(req, res) {
 		try {
 			const { _id, password, ...data } = JSON.parse(req.body)
 
-			const foundUser = await User.findOne({ _id })
+			const foundUser = await User.findOne({ _id: _id })
 
 			if (!foundUser) {
 				return res.status(400).json({ error: 'User not found' })
@@ -89,7 +89,9 @@ export default async function handle(req, res) {
 
 			const dataToUpdate = { ...data }
 
-			await User.updateOne({ _id }, dataToUpdate)
+			await User.findByIdAndUpdate(_id, dataToUpdate, {
+				new: true, // return the new document
+			})
 
 			return res.status(200).json({ message: 'Success' })
 		} catch (error) {
