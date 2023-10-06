@@ -44,10 +44,11 @@ export default async function handle(req, res) {
 	}
 
 	if (method === 'PUT') {
-		const { _id, email } = req.body
+		const { _id, email, fullname } = req.body
 
 		await SubscribedUser.findByIdAndUpdate(_id, {
 			email,
+			fullname
 		})
 
 		res.json(true)
