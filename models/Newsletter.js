@@ -7,6 +7,7 @@ const NewsletterSchema = new Schema(
 		url: { type: String, require: true },
 		author: { type: String, require: true },
 		authorDetail: { type: String, require: true },
+		titleUrl: { type: String },
 		sendDate: { type: String },
 	},
 	{
