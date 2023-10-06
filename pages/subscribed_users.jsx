@@ -16,6 +16,7 @@ export default function SubscribedUsersPage({ subscribed_users }) {
 	// Removing unnecessary fields
 	const formattedSubscribedUsers = subscribed_users.map((item) => ({
 		id: item._id,
+		name: item.fullname,
 		email: item.email,
 		created_at: item.createdAt,
 	}))
@@ -41,7 +42,7 @@ export default function SubscribedUsersPage({ subscribed_users }) {
 
 			{/* searchKey = accessorKey from @/components/Columns  */}
 			<DataTable
-				searchKey="email"
+				searchKey="name"
 				columns={columnsSubscribedUser}
 				data={formattedSubscribedUsers}
 			/>

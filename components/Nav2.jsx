@@ -223,7 +223,7 @@ export function Nav2({ activeSidebar, SetActiveSidebar, userName }) {
 						className={cn(anchorClassName, 'flex justify-between')}
 					>
 						<div>
-							<i class={'bx bx-envelope' + iClassName}></i>
+							<i className={'bx bx-envelope' + iClassName}></i>
 							<span
 								className={cn(
 									linksNameClassName,

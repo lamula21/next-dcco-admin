@@ -18,7 +18,8 @@ import {
 } from '@/components/ui/form'
 
 const formSchema = z.object({
-	email: z.string().min(1)
+	email: z.string().min(1),
+	fullname: z.string().min(1)
 })
 
 export const SubscribedUserForm = ({ initialData }) => {
@@ -30,6 +31,7 @@ export const SubscribedUserForm = ({ initialData }) => {
 	const action = initialData ? 'Save changes' : 'Create'
 
 	const defaultValues = initialData || {
+		fullname: '',
 		email: '',
 	}
 
@@ -66,6 +68,25 @@ export const SubscribedUserForm = ({ initialData }) => {
 					<div className="md:grid md:grid-cols-3 gap-8">
 						<FormField
 							control={form.control}
+							name="fullname"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>Fullname</FormLabel>
+									<FormControl>
+										<Input
+											required
+											disabled={loading}
+											placeholder="Fullname"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						<FormField
+							control={form.control}
 							name="email"
 							render={({ field }) => (
 								<FormItem>
@@ -83,7 +104,6 @@ export const SubscribedUserForm = ({ initialData }) => {
 								</FormItem>
 							)}
 						/>
-
 						
 					</div>
 

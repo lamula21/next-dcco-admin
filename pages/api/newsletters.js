@@ -14,12 +14,16 @@ export default async function handle(req, res) {
 		if (req.query?.id) {
 			return res.json(await Newsletter.findOne({ _id: req.query.id }))
 		}
+		if (req.query?.titleUrl) {
+			return res.json(await Newsletter.findOne({ titleUrl: req.query.titleUrl }))
+		}
 		return res.json(await Newsletter.find())
 	}
 
 	if (method === 'POST') {
-		const { title, content, imageUrl, url, author, authorDetail, sendDate } =
-			req.body
+		const { title, content, imageUrl, url, author, authorDetail, sendDate } = req.body
+
+		const titleUrl = title.toLowerCase().split(' ').join('-');
 
 		const newsletterDocument = await Newsletter.create({
 			title,
@@ -27,6 +31,7 @@ export default async function handle(req, res) {
 			sendDate,
 			imageUrl,
 			url,
+			titleUrl,
 			author,
 			authorDetail,
 		})
@@ -46,8 +51,11 @@ export default async function handle(req, res) {
 			sendDate,
 		} = req.body
 
+		const titleUrl = title.toLowerCase().split(' ').join('-');
+
 		await Newsletter.findByIdAndUpdate(_id, {
 			title,
+			titleUrl,
 			content,
 			imageUrl,
 			url,

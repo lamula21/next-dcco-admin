@@ -2,6 +2,10 @@ import { CellAction } from './CellAction'
 
 export const columnsSubscribedUser = [
 	{
+		accessorKey: 'name',
+		header: 'Fullname',
+	},
+	{
 		accessorKey: 'email',
 		header: 'Email',
 	},
